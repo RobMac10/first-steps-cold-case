@@ -1,6 +1,6 @@
 window.FS = window.FS || {};
 Object.assign(window.FS, {
-title: 'Walking on Ancient Ground',
+title: 'First Steps on Ancient Ground',
 flipbook: 'https://heyzine.com/flip-book/d73a2fe642.html',
 S: {
  tench: ['Watkin Tench, A Complete Account of the Settlement at Port Jackson (1793), Project Gutenberg', 'https://www.gutenberg.org/files/3534/3534-h/3534-h.htm'],
@@ -21,7 +21,7 @@ S: {
  bounty: ['Museums of History NSW: Entitlement certificates of persons on bounty ships, 1832–42', 'https://mhnsw.au/articles/nrs-5314-entitlement-certificates/'],
  cooks: ['Dictionary of Sydney: First people of the Cooks River (Paul Irish)', 'https://dictionaryofsydney.org/entry/first_people_of_the_cooks_river'],
  mabo: ['National Museum of Australia, Defining Moments: Mabo decision', 'https://www.nma.gov.au/defining-moments/resources/mabo-decision'],
- flip: ['Walking on Ancient Ground (flipbook)', 'https://heyzine.com/flip-book/d73a2fe642.html']
+ flip: ['First Steps on Ancient Ground (flipbook)', 'https://heyzine.com/flip-book/d73a2fe642.html']
 },
 care: [
  'Cultural care. This book and this app deal with killing, kidnapping, disease and the removal of children. The old records use words of their time, and some of them are hard to read. In December 1790 the colony’s orders included killing men and bringing back their heads, and this app says so plainly where it matters. You can stop at any time. If something upsets you, talk to your teacher or someone you trust.',
@@ -49,7 +49,7 @@ caseFile: [
  'Evidence held: five damaged fragments, A to E. Names, dates and places are missing.'
 ],
 summary: [
- 'Walking on Ancient Ground is a pick-a-path story. You choose one of three characters: a resistance warrior called the Resistor, a clerk named Thomas Freeman in the starving colony of 1790, or a farm worker named Thomas Curtis who arrives in 1840. At the back, the Detective Hunt Log Book gives five damaged records and asks one question: who is the Resistor, and what do the records say?',
+ 'First Steps on Ancient Ground is a pick-a-path story. You choose one of three characters: a resistance warrior called the Resistor, a clerk named Thomas Freeman in the starving colony of 1790, or a farm worker named Thomas Curtis who arrives in 1840. At the back, the Detective Hunt Log Book gives five damaged records and asks one question: who is the Resistor, and what do the records say?',
  'This app is a companion to that question. Each character has a witness file with four parts: what the book says about them, what they said, what public records show, and what nobody asked. The clue pages let you work through the five fragments. The board sets statements from the book next to statements from the records, so you can see where they match and where they do not. At the end you write your own finding.',
  'The book does not give one answer, and neither does this app. It tells you what is in the book and what is in the records{{T:, and what was written for the story}}. You decide what the evidence supports.'
 ],
