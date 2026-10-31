@@ -13,7 +13,7 @@ window.FS.spot = {
  ],
  note: 'There may be more than one good reason, and some cases cannot be settled. If the evidence is not enough, “I cannot tell yet” is a proper finding. Use only what is on the page.',
  reasons: [
-  ['story', 'The author wanted eyes on the ground'],
+  ['story', 'The author added a witness so readers could see it happen'],
   ['slip', 'The writer made a slip or remembered it wrongly'],
   ['copy', 'Someone copied or counted wrongly'],
   ['sources', 'Good sources disagree with each other'],
