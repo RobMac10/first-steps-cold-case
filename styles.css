@@ -168,3 +168,11 @@ a{color:var(--red)}
 .itemcard b{display:block}
 .itemcard span{font-size:14px}
 .cluebox{border:1px solid var(--rule);background:#fffaf0;padding:8px 12px;margin:10px 0}
+/* Spot the Discrepancy */
+.sbs{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:700px){.sbs{grid-template-columns:1fr 1fr}}
+.sbs .panel{margin:6px 0}
+.sbs blockquote{margin:0 0 8px;padding:0 0 0 10px;border-left:3px solid #c9b88f}
+.sbs .quoteline{margin:0 0 8px}
+.spotstate{font-size:14px}
+.casecard{display:flex;justify-content:space-between;gap:8px;text-align:left;width:100%}

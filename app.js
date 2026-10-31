@@ -2,7 +2,7 @@
 'use strict';
 const T=window.FS,KEY='first-steps-cold-case-v1';
 let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
-const fresh=()=>{st.unlocked=st.unlocked||{};st.items=st.items||{};st.board=st.board||{};st.finding=st.finding||{};st.write=st.write||{};st.tl=st.tl||{r:true,f:true,c:true,w:true,src:'all',q:''};st.hyp=st.hyp||'';};fresh();
+const fresh=()=>{st.unlocked=st.unlocked||{};st.items=st.items||{};st.board=st.board||{};st.finding=st.finding||{};st.write=st.write||{};st.tl=st.tl||{r:true,f:true,c:true,w:true,src:'all',q:''};st.hyp=st.hyp||'';st.spot=st.spot||{};};fresh();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const P=a=>a.map(x=>'<p>'+esc(x)+'</p>').join('');
@@ -34,7 +34,7 @@ screens.home=()=>{
  '<h2>How to use this app</h2><p>The app keeps spoilers back. Each witness file opens when you say you have finished that character’s story in the book. Nobody checks. It works best if you read first.</p><ol class="steps">'+T.readingPath.map(s=>'<li>'+esc(s[0])+'<small>'+esc(s[1])+'</small></li>').join('')+'</ol>'+
  '<div class="status" aria-label="Your progress"><span class="'+(nW==4?'done':'')+'">Witness files open: '+nW+' of 4</span><span class="'+(nI==5?'done':'')+'">Clues scored: '+nI+' of 5</span><span class="'+(nT==T.topics.length?'done':'')+'">Board questions locked in: '+nT+' of '+T.topics.length+'</span></div>'+
  '<h2>In the book, in the record, from the story</h2><p>Every card in this app keeps these apart.</p><p>'+badge('book')+'What the book says. It is not a record.</p><p>'+badge('real')+'Something in a public record, with the source named.</p><p>'+badge('made')+'Written for the story. This app found no record for it. The book says some dialogue and thoughts are imagined.</p><p>'+badge('check')+'The book and the records do not fit, or the app could not check.</p>'+
- '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/timeline">See the timeline</a></div>';
+ '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/timeline">See the timeline</a></div><div class="grid c2"><a class="btn" href="#/spot">Spot the Discrepancy</a><a class="btn" href="#/class">Class mode</a></div>';
 };
 
 /* ---------- WITNESSES ---------- */
@@ -212,11 +212,65 @@ screens.class=()=>{
  const wcount=wr.fields.map(f=>wsum(w[f[0]])).reduce((a,b)=>a+b,0);
  return '<h1>Class mode</h1>'+P([T.classIntro])+
  '<details><summary>Notes for teachers</summary><div><ul>'+T.teacherNotes.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p>Teacher tools:</p><p><button class="btn small" data-classall="1">'+(st.classAll?'All files are unlocked on this device. Tap to lock again':'Unlock everything on this device')+'</button></p></div></details>'+
+ '<h2>Activity: '+esc(T.spot.title)+'</h2><p>Students find four places where the book and the records do not agree, choose a reason for each and write why. It shows how historians compare sources.</p><p><a class="btn dark" href="#/spot">Open the activity</a></p>'+spotTeacher()+'<h3>Questions for the whole class</h3><ol class="q">'+T.spot.prompts.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol>'+
  '<h2>Discussion questions</h2><p>Each group matches a part of the book. Use the group after you reach that part.</p>'+
  T.questions.map((g,i)=>'<details'+(i==0?' open':'')+'><summary>'+esc(g.h)+'</summary><div><ol class="q">'+g.q.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol></div></details>').join('')+
  '<h2>'+esc(wr.title)+'</h2><p class="wc">'+esc(wr.time)+'</p><ol class="q">'+wr.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol><p><strong>Sentence starters:</strong> '+wr.starters.map(esc).join(' &nbsp;·&nbsp; ')+'</p>'+
  wr.fields.map(f=>'<label for="w_'+f[0]+'">'+esc(f[1])+'</label>'+(f[2]?'<textarea id="w_'+f[0]+'" data-wk="'+f[0]+'">'+esc(w[f[0]]||'')+'</textarea>':'<input type="text" id="w_'+f[0]+'" data-wk="'+f[0]+'" value="'+esc(w[f[0]]||'')+'">')).join('')+
  '<p class="wc" id="wcount" aria-live="polite">Words so far: '+wcount+'</p><p><button class="btn dark" id="printbtn">Print or save my work</button></p>';
+};
+
+
+/* ---------- SPOT THE DISCREPANCY ---------- */
+const SPOT=()=>T.spot;
+const spotOf=id=>st.spot[id]||(st.spot[id]={});
+const spotReady=s=>!!(s.pick&&wsum(s.why)>2);
+const reasonText=id=>{const r=SPOT().reasons.find(x=>x[0]==id);return r?r[1]:''};
+const spotDone=id=>!!(st.spot[id]&&st.spot[id].locked);
+function spotSide(x){
+ return '<section class="panel '+(x.kind=='book'?'book':'real')+'" aria-label="'+esc(BADGE[x.kind][1]+': '+x.who)+'"><h3>'+badge(x.kind)+esc(x.who)+'</h3>'+x.t.map(q=>'<blockquote><p style="margin:0">'+esc(q)+'</p></blockquote>').join('')+srcLinks(x.src)+'</section>';
+}
+function spotTeacher(){
+ return '<details><summary>Teacher note: how historians compare sources</summary><div><ul>'+SPOT().teacher.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></details>';
+}
+screens.spot=(arg)=>{
+ const S=SPOT(),c=S.cases.find(x=>x.id==arg);
+ if(!c){
+  const n=S.cases.filter(x=>spotDone(x.id)).length;
+  return '<h1>'+esc(S.title)+'</h1>'+P(S.intro)+
+  '<h2>How it works</h2><ol class="steps">'+S.how.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol><p class="note">'+esc(S.note)+'</p>'+
+  '<div class="status"><span class="'+(n==S.cases.length?'done':'')+'">Cases locked in: '+n+' of '+S.cases.length+'</span></div>'+
+  '<ol class="q" style="list-style:none;padding:0">'+S.cases.map((x,i)=>{const s=st.spot[x.id]||{};const ok=unlocked(x.gate);const t=!ok?'Locked':(s.locked?'Locked in':(s.pick?'Started':'Not started'));return '<li><a class="btn casecard" href="#/spot/'+x.id+'"><span>'+(i+1)+'. '+esc(x.title)+'</span><span class="wc">'+t+'</span></a></li>'}).join('')+'</ol>'+
+  '<h2>For teachers</h2>'+spotTeacher();
+ }
+ const i=S.cases.indexOf(c);
+ if(!unlocked(c.gate)){
+  const w=W(c.gate);
+  return '<p><a href="#/spot">&larr; All cases</a></p><h1>'+(i+1)+'. '+esc(c.title)+'</h1><div class="lockwall"><p><strong>This case is locked so it does not spoil the book.</strong></p><p>Unlock '+esc(w.fileLabel)+' ('+esc(w.name)+') first.</p><a class="btn dark" href="#/witnesses/'+c.gate+'">Go to the witness file</a></div>';
+ }
+ const s=spotOf(c.id),L=!!s.locked;
+ let h='<p><a href="#/spot">&larr; All cases</a></p><h1>'+(i+1)+'. '+esc(c.title)+'</h1><p class="lead">'+esc(c.ask)+'</p>'+
+ '<h2>Step 1. Read both sides</h2><div class="sbs">'+spotSide(c.a)+spotSide(c.b)+'</div>'+
+ (c.book?'<p class="note">'+badge('book')+esc(c.book)+'</p>':'')+
+ '<div class="cluebox"><strong>Questions to ask</strong><ul>'+c.clues.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'+
+ '<h2>Step 2. Choose the most likely reason</h2><fieldset><legend>The difference is most likely because:</legend><div class="opts" style="flex-direction:column">'+S.reasons.map(r=>'<label><input type="radio" name="spot_'+c.id+'" value="'+r[0]+'" data-sk="pick"'+(s.pick==r[0]?' checked':'')+(L?' disabled':'')+'> '+esc(r[1])+'</label>').join('')+'</div></fieldset>'+
+ '<h2>Step 3. Write why</h2><label for="spotwhy">In one or two sentences: what in the two sides makes you pick this reason? Use only what is on the page.</label><textarea id="spotwhy" data-sk="why"'+(L?' disabled':'')+'>'+esc(s.why||'')+'</textarea>';
+ if(!L){
+  const ok=spotReady(s);
+  h+='<p><button class="btn dark" id="spotlock" data-spotlock="'+c.id+'"'+(ok?'':' disabled')+' aria-describedby="spothelp">Lock in my answer</button></p><p id="spothelp" class="wc">'+(ok?'Once you lock it in, you can see what the evidence shows.':'To lock in, choose a reason and write at least three words about why.')+'</p>';
+ }else{
+  const fits=c.lean.includes(s.pick);
+  h+='<div class="locked-note">Locked in. Your answer is saved on this device.</div>'+
+  '<section class="reveal" aria-labelledby="rvs"><h2 id="rvs">What the evidence shows</h2>'+
+  '<p><strong>You chose:</strong> '+esc(reasonText(s.pick))+'.</p>'+
+  '<p>'+(fits?'This is one of the reasons the evidence points to.':'This is not the reason the evidence points to most strongly. You may still be able to back it up, so look again at the quotes and your own sentences.')+'</p>'+
+  '<p><strong>The reasons the evidence points to:</strong> '+c.lean.map(x=>esc(reasonText(x))).join('; ')+'.</p>'+
+  P(c.reveal)+'<p>'+badge('check')+'<strong>Still open.</strong> '+esc(c.open)+'</p>'+srcLinks(c.src)+'</section>'+
+  '<p><button class="btn small" data-spotunlock="'+c.id+'">Unlock my answer to change it</button></p>';
+ }
+ h+=spotTeacher();
+ h+='<div class="pager">'+(i>0?'<a class="btn" href="#/spot/'+S.cases[i-1].id+'">&larr; Previous</a>':'<a class="btn" href="#/spot">&larr; All cases</a>')+(i<S.cases.length-1?'<a class="btn dark" href="#/spot/'+S.cases[i+1].id+'">Next case &rarr;</a>':'<a class="btn dark" href="#/class">Class mode &rarr;</a>')+'</div>';
+ return h;
 };
 
 /* ---------- ABOUT ---------- */
@@ -239,13 +293,14 @@ function buildPrint(){
  h+='<h4>Case status</h4><p>'+g(f.status)+'</p><h4>Who I think the Resistor is, and what happened</h4><p>'+g(f.what)+'</p><h4>How my thinking changed</h4><p>'+g(f.revised)+'</p><h4>The sources I trust most, and why</h4><p>'+g(f.trust)+'</p><h4>Whose voices are missing</h4><p>'+g(f.silences)+'</p><h4>What is still missing</h4><p>'+g(f.unchecked)+'</p><h4>How sure am I?</h4><p>'+g(f.sure)+'</p>';
  h+='<h4>My evidence log</h4>'+T.items.map(i=>{const s=st.items[i.id]||{clues:{}};const got=i.clues.filter(c=>s.clues[c[0]]).map(c=>esc(c[2]));return '<p><strong>'+esc(i.title)+'</strong><br>Score: '+g(s.rel)+' of 5<br>Why: '+g(s.why)+'<br>Clues collected: '+(got.length?got.join('; '):'—')+'</p>'}).join('');
  h+='<h4>My Board findings</h4>'+T.topics.map(t=>{const b=st.board[t.id]||{};const c=x=>{const k=t.cards.find(y=>y[0]==x);return k?esc(T.who[k[1]])+' ('+esc(k[2])+'): '+esc(k[3]):'—'};return '<p><strong>'+esc(t.title)+'</strong><br>Pair: '+c(b.a)+'<br>and: '+c(b.b)+'<br>Trust most: '+g(b.trust)+'<br>My finding: '+g(b.note)+'</p>'}).join('');
+ if(T.spot.cases.some(c=>st.spot[c.id]&&(st.spot[c.id].pick||st.spot[c.id].why)))h+='<h4>Spot the Discrepancy</h4>'+T.spot.cases.map(c=>{const x=st.spot[c.id]||{};return '<p><strong>'+esc(c.title)+'</strong><br>My reason: '+g(x.pick?reasonText(x.pick):'')+'<br>Why: '+g(x.why)+'</p>'}).join('');
  if(T.writing.fields.some(x=>st.write[x[0]]))h+='<h4>Writing task: a source check</h4>'+T.writing.fields.map(x=>'<p><strong>'+esc(x[1])+'</strong><br>'+g(st.write[x[0]])+'</p>').join('');
  document.getElementById('print').innerHTML=h;
 }
 
 /* ---------- ROUTER ---------- */
-const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['timeline','Timeline'],['records','Records'],['class','Class'],['about','About']];
-const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',timeline:'Timeline',records:'Real records',class:'Class mode',about:'About'};
+const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['spot','Discrepancies'],['timeline','Timeline'],['records','Records'],['class','Class'],['about','About']];
+const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',spot:'Spot the Discrepancy',timeline:'Timeline',records:'Real records',class:'Class mode',about:'About'};
 const main=document.getElementById('main'),nav=document.getElementById('nav');
 let first=true;
 function draw(){
@@ -278,6 +333,8 @@ document.addEventListener('click',e=>{
  else if(b.dataset.lock){const bd=board(b.dataset.lock);if(bd.a&&bd.b&&bd.trust&&(bd.note||'').trim().length>2){bd.locked=Date.now();save();rerender('#rv');const r=document.getElementById('rv');if(r){r.setAttribute('tabindex','-1');r.focus();}}}
  else if(b.id=='lockfind'){st.finding.locked=Date.now();save();rerender('#rv1');const r=document.getElementById('rv1');if(r){r.setAttribute('tabindex','-1');r.focus();}}
  else if(b.dataset.unlockfind){delete st.finding.locked;save();rerender('h1');}
+ else if(b.dataset.spotlock){const x=spotOf(b.dataset.spotlock);if(spotReady(x)){x.locked=Date.now();save();rerender('#rvs');const r=document.getElementById('rvs');if(r){r.setAttribute('tabindex','-1');r.focus();}}}
+ else if(b.dataset.spotunlock){delete spotOf(b.dataset.spotunlock).locked;save();rerender('h1');}
  else if(b.dataset.classall){st.classAll=!st.classAll;save();rerender();}
  else if(b.id=='printbtn'){buildPrint();window.print();}
  else if(b.id=='clear'){if(confirm('Clear all your answers and unlocks from this browser?')){localStorage.removeItem(KEY);st={};fresh();route();}}
@@ -285,6 +342,7 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
  const d=e.target.dataset||{};
  if(d.clue){const s=item(location.hash.split('/')[2]);s.clues[d.clue]=e.target.checked;save();}
+ else if(d.sk=='pick'){spotOf(location.hash.split('/')[2]).pick=e.target.value;save();rerender('[data-sk="pick"]:checked');}
  else if(d.tls){st.tl[d.tls]=e.target.checked;save();tlUpdate();}
  else if(d.tlsrc){st.tl.src=e.target.value;save();tlUpdate();}
  else if(d.tljump){const y=e.target.value;if(y){const f=tlFiltered().find(x=>yearOf(x)==y);if(f)tlGo(f.id);}}
@@ -296,6 +354,7 @@ document.addEventListener('input',e=>{
   if(d.bk=='trust'||d.bk=='note'){const btn=document.getElementById('lockbtn');if(btn){const ok=bd.a&&bd.b&&bd.trust&&(bd.note||'').trim().length>2;btn.disabled=!ok;document.getElementById('lockhelp').textContent=ok?'Once you lock it in, you can read what the sources say.':'To lock in, pick a pair, choose whom you trust and write your finding.';}}}
  else if(d.fk){st.finding[d.fk]=e.target.value;save();const btn=document.getElementById('lockfind');if(btn){const f=st.finding;const ok=f.status&&(f.what||'').trim().length>2&&f.sure;btn.disabled=!ok;document.getElementById('fhelp').textContent=ok?'Locking it in shows what the records can and cannot tell us.':'To lock in, choose the case status and how sure you are, and write what you think happened.';}}
  else if(d.wk){st.write[d.wk]=e.target.value;save();document.getElementById('wcount').textContent='Words so far: '+['claim','record','agree','missing'].map(k=>wsum(st.write[k])).reduce((a,b)=>a+b,0);}
+ else if(d.sk=='why'){const x=spotOf(location.hash.split('/')[2]);x.why=e.target.value;save();const btn=document.getElementById('spotlock');if(btn){const ok=spotReady(x);btn.disabled=!ok;document.getElementById('spothelp').textContent=ok?'Once you lock it in, you can see what the evidence shows.':'To lock in, choose a reason and write at least three words about why.';}}
  else if(d.hyp){st.hyp=e.target.value;save();}
  else if(d.ik=='why'){const s=item(location.hash.split('/')[2]);const had=s.rel&&wsum(s.why)>2;s.why=e.target.value;save();const now=s.rel&&wsum(s.why)>2;if(now&&!had){const pos=e.target.selectionStart;rerender('#why');const t=document.getElementById('why');if(t&&pos!=null){try{t.setSelectionRange(pos,pos)}catch(x){}}}}
  else if(d.tlq){st.tl.q=e.target.value;save();tlUpdate();}

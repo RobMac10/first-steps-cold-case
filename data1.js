@@ -58,6 +58,7 @@ readingPath: [
  ['Follow one path to its end, then open that character’s witness file.', 'The file stays locked until you say you have finished that story. Nobody checks.'],
  ['Work through clues A to E.', 'They are the five damaged records from the Log Book. Collect clues and score each source.'],
  ['Use the board.', 'Pair statements from the book and from the records that do not fit together. Say whom you trust and write a finding.'],
+ ['Spot the discrepancies.', 'Find four places where the book and the records do not agree. Choose a reason for each and write why.'],
  ['Explore the timeline.', 'Filter by character. See which dates come from the book and which come from public records.'],
  ['Write your finding.', 'Then read what the records can and cannot tell us.']
 ],

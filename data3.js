@@ -102,6 +102,7 @@ questions: [
 ],
 teacherNotes: [
  'There is no answer key. The book does not give one answer, and neither does this app.',
+ 'Spot the Discrepancy shows students how historians compare sources. See the teacher note on that page and in Class mode.',
  'The book asks teachers to supplement the story with Indigenous voices and scholarship. Please follow your school’s protocols, and consider inviting a local Aboriginal education worker or Elder.',
  'The story and the records include killing and the removal of children. Preview the Resistor, Freeman and Board pages before class, and offer students the choice to stop.',
  'Nothing students type leaves their device. Printing is the way to share work.'
