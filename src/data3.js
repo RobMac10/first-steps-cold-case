@@ -149,7 +149,7 @@ findingReveal: [
  'What the records cannot tell us: why the gamekeeper was speared in the words of the people involved, what the Bidjigal people said about the raids, and what Warra thought. Almost every record was written by the colony’s officers, who were fighting him. Item E is the only fragment from another point of view, and its speaker and place are not known.',
  'So the case stays open. A careful finding says what the sources show, what the story adds, and what is missing. If your finding does that, it fits the book’s own rule: do not invent facts that cannot be supported by primary evidence.'
 ],
-about: 'This is a companion app for First Steps on Ancient Ground by Robin McKean, Perth, Western Australia. It is for readers 12 and older. Read the book first. Open it here:'
+about: 'This is a companion app for Walking on Ancient Ground by Robin McKean, Perth, Western Australia. It is for readers 12 and older. Read the book first. Open it here:'
 });
 
 /* Teacher-only answers. Removed from the student version by build.js. */

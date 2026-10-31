@@ -1,7 +1,9 @@
-# Cold Case: First Steps on Ancient Ground
+# Cold Case: Walking on Ancient Ground
 
-A free, static companion app for Robin McKean's book *First Steps on Ancient Ground*
+A free, static companion app for Robin McKean's book *Walking on Ancient Ground*
 (https://heyzine.com/flip-book/d73a2fe642.html).
+
+Note: the book was first called *First Steps on Ancient Ground*. It is now *Walking on Ancient Ground*. The repository name and web address keep the old name so existing links still work.
 
 Two versions are built from one source:
 
