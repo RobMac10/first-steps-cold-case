@@ -63,14 +63,14 @@ hunt: [
  ['Hansard, House of Commons, 1 August 1845 and 5 March 1846', 'Official record of debates and evidence. Primary source.', 'hansard45'],
  ['Hansard, 5 March 1846: The Andover Union', 'Evidence by a guardian and magistrate. Primary source.', 'hansard46'],
  ['Shipping lists and the Sydney Gazette of 4 August 1840', 'A transcription of lists and a newspaper. The original newspaper is a primary source. The transcription is not.', 'andro'],
- ['National Museum of Australia: Pemulwuy', 'A museum page based on historians. Quotes Governor King’s orders. Secondary source.', 'nmaPem'],
- ['Australian Dictionary of Biography: Pemulwuy', 'A reference article that quotes David Collins. Secondary source.', 'adbPem'],
- ['Dictionary of Sydney: Pemulwuy and the Cooks River entries', 'Reference entries. Secondary source.', 'dosPem'],
+ ['National Museum of Australia: Defining Moments page on a Bidjigal leader of the 1790s', 'A museum page based on historians. Quotes Governor King’s orders. Secondary source.', 'nmaPem'],
+ ['Australian Dictionary of Biography: article on a Bidjigal leader of the 1790s', 'A reference article that quotes David Collins. Secondary source.', 'adbPem'],
+ ['Dictionary of Sydney: entries on a Bidjigal leader of the 1790s and on the Cooks River', 'Reference entries. Secondary source.', 'dosPem'],
  ['Museums of History NSW: Entitlement certificates', 'A guide to the records of bounty ships from 1832 to 1842. Use it to find the original certificate.', 'bounty']
 ],
 huntNote: 'The book asks you to find at least three independent primary sources that are not in the Log Book, and to put at least one of a different type. The first two rows are primary sources. Check each against the fragments, score it for reliability, and say why. Good places to search are Trove (newspapers), State Library catalogues, the National Archives, early colonial reports, immigration records and publicly shared First Nations oral history material. Check access conditions before you use it.',
 readNext: [
- 'From the book’s own reading list: Watkin Tench (1789 and 1793), David Collins (1798 to 1802), Arthur Phillip (1789); James L. Kohen, Aboriginal Environmental Impacts (UNSW Press, 1995); Eric Willmot, Pemulwuy: The Rainbow Warrior (1987; the Dictionary of Sydney calls it a work of fiction); National Museum of Australia, “Pemulwuy”.',
+ 'From the book’s own reading list: Watkin Tench (1789 and 1793), David Collins (An Account of the English Colony in New South Wales), Arthur Phillip (1789); James L. Kohen, Aboriginal Environmental Impacts (UNSW Press, 1995); Eric Willmot’s 1987 novel about a Bidjigal leader (the Dictionary of Sydney calls it a work of fiction); and a National Museum of Australia page on the same man. The titles are in the book’s reading list and are not repeated here, so they do not give away the case.',
  'The book says readers and teachers should seek out works by Indigenous historians and authors. This app does not replace them.'
 ],
 questions: [
@@ -85,7 +85,7 @@ questions: [
    'The records call him a “murderer” and an “enemy”. Whose words are those? What other words could describe him?'
  ]},
  {h: 'Thomas Freeman', q: [
-   'Freeman’s choices lead to nine different ends. Which one would you pick, and why?',
+   'Freeman’s choices lead to different ends. Which choice would you make, and why?',
    'Tench wrote that he asked Phillip to change an order. What does that tell you about Tench? What does it not tell you?',
    'Freeman is not named in the records the app found. Does that mean he did not exist?'
  ]},
@@ -96,12 +96,12 @@ questions: [
  ]},
  {h: 'Comparing records', q: [
    'Pick one clash from the Board. Which side do you trust more, and why?',
-   'The timeline has events marked “From the story”. Why is it important to keep them separate from records?',
+   'This app marks some things “From the story”. Why is it important to keep them separate from records?',
    'Whose voices are missing from the records you have seen? How could you find out more safely?'
  ]}
 ],
 teacherNotes: [
- 'There is no answer key. The book does not give one answer, and neither does this app.',
+ 'There is no answer key for the questions. The book does not give one answer, and neither does this app. The plot endings and the records held back from students are in the closed “Teacher answers (spoilers)” box on this page.',
  'Spot the Discrepancy shows students how historians compare sources. See the teacher note on that page and in Class mode.',
  'The book asks teachers to supplement the story with Indigenous voices and scholarship. Please follow your school’s protocols, and consider inviting a local Aboriginal education worker or Elder.',
  'The story and the records include killing and the removal of children. Preview the Resistor, Freeman and Board pages before class, and offer students the choice to stop.',
@@ -113,7 +113,6 @@ writing: {title: 'Writing task: a source check', time: 'About 20 minutes. Aim fo
  starters: ['The book says…', 'The record says…', 'They agree that…', 'They do not agree that…', 'I trust ___ more because…', 'I would want to know…'],
  fields: [['claim', 'The book says…', false], ['record', 'The record says…', false], ['agree', 'Where they agree and where they do not', true], ['missing', 'What is still missing', true]]},
 credits: [
- ['Timeline', 'Sketch and description of the settlement at Sydney Cove, Port Jackson, attributed to Francis Fowkes (1788, published 1789). State Library of New South Wales, via Wikimedia Commons. Public domain.'],
  ['Thomas Freeman file', 'The melancholy loss of HMS Sirius off Norfolk Island, March 19th 1790. Watercolour by George Raper. National Library of Australia, nla.pic-an21511971, via Wikimedia Commons. Public domain.']
 ],
 openChecks: [
@@ -122,13 +121,13 @@ openChecks: [
  'The book says the flour was mouldy and weevil-filled. Tench wrote that the Cape flour was good. Other sources have not been checked.',
  'No clerk is listed in Tench’s party. The march, the spear and the order to fire are written for the story.',
  'The records put the first raid at Prospect in May 1792. Freeman’s chapter already says the Resistor leads raids and burns crops.',
- 'The records say the Darug believed he could not be shot after 1797. The book says the soldiers believed it in 1790.',
+ 'The records say the Darug believed he could not be shot after his escapes in the 1790s. The book says the soldiers believed it in 1790.',
  'The records say terra nullius became law in 1835. The book uses the words for 1788.',
  'Curtis’s ship, the stop at Port Phillip and August 1840 match a shipping list. The list also has a Margaret aged 18, and ages that may be wrong. The certificates have not been opened.',
  'The first record of the Andover bone crushing found is from 1845. The book has villagers talking about it before 1840.',
  'The RBA puts the severe drought in 1838 to 1840. The book’s chapter has the river shrinking by 1842.',
  'For the author and Gadigal and Wangal sources: the clan names for the Cooks River and the word “Ngurra”.',
- 'Whether to name Pemulwuy in this app. The book does not. The app does because Tench’s own account, the book’s reading list and the National Museum page name him. The book’s other companion app avoids names of Aboriginal people who have died, so this is the author’s choice.',
+ 'Whether to name the Bidjigal leader in this app. The book does not. The app names him only after a reader locks in a finding, and in the closed teacher box. Tench’s own account, the book’s reading list and the National Museum page name him. The book’s other companion app avoids names of Aboriginal people who have died, so this is the author’s choice.',
  'The book’s plates are labelled facsimile reconstructions. This app does not reuse them.',
  'The app uses the book’s printed page numbers (the flipbook’s page counter runs differently).'
 ]
@@ -145,9 +144,72 @@ sureOptions: ['Very sure', 'Fairly sure', 'Not very sure', 'Not sure at all'],
 findingReveal: [
  'The book does not say who the Resistor is. It says the figure is inspired by a documented Bidjigal leader of the 1790s, and that it does not claim to speak for clans or living cultural traditions.',
  'What the records support: a Bidjigal man from the Botany Bay area was named by Colbee and others to Tench in December 1790 as the man who speared the Governor’s gamekeeper. Tench spelled his name “Pimelwi”. The National Museum, the Australian Dictionary of Biography and the Dictionary of Sydney name him Pemulwuy. Raids at Prospect and Toongabbie, wounds and an escape in 1797, and a death in 1802 are recorded. The book’s Resistor shares the gamekeeper, the Prospect raids, the wounds and the belief that he cannot be shot.',
+ 'Records that were held back until now: the Darug believed firearms could not kill him after 1797. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 Pemulwuy was outlawed and rewards were offered. He was shot dead on or just before 2 June 1802, and the National Museum says it is not certain who shot him. A later dispatch from London said that cruelty toward First Nations people would be punished.',
  'What does not match: the order of events (the story joins 1790, 1792 and 1797 into one time), the soldiers’ belief in 1790, Freeman on the march and at Prospect, the fight on the march, and the details of the night raid. Those are the story’s.',
  'What the records cannot tell us: why the gamekeeper was speared in the words of the people involved, what the Bidjigal people said about the raids, and what Warra thought. Almost every record was written by the colony’s officers, who were fighting him. Item E is the only fragment from another point of view, and its speaker and place are not known.',
  'So the case stays open. A careful finding says what the sources show, what the story adds, and what is missing. If your finding does that, it fits the book’s own rule: do not invent facts that cannot be supported by primary evidence.'
 ],
 about: 'This is a companion app for First Steps on Ancient Ground by Robin McKean, Perth, Western Australia. It is for readers 12 and older. Read the book first. Open it here:'
 });
+
+/* Teacher-only answers. Shown only inside a closed box headed "Teacher answers (spoilers)". */
+(function(){
+var F={};
+F[1]=[
+ {h:'The Resistor: how the nine paths end (from the book)',p:[
+  'Lead the Raid, then Signal Your Warriors to Retreat: “Successful Strike”. The fields burn and the people will have food.',
+  'Lead the Raid, then Approach Freeman Alone: “Tentative Connection”. The Resistor and Freeman look at each other and he feels a glimmer of understanding.',
+  'Lead the Raid, then Order a Warrior to Strike Him: “Escalated Conflict”. A spear is thrown at Freeman, who hides behind a tree.',
+  'Scout the Farm, then Attack Guards: “Heroic Rescue”. The guards fall, one warrior is killed by a stray musket ball, and the children are brought home.',
+  'Scout the Farm, then Wait and Burn the Fields: “Planned Strike”. He burns only part of the crop and his name begins to spread.',
+  'Scout the Farm, then Retreat and Plan a Bigger Raid: “Tactics and Patience”. He returns weeks later with more warriors and the Prospect farm burns.',
+  'Send a Warrior to Parley, then Launch the Raid: “Fiery Retribution”. The fields burn and he wonders if the violence will ever end.',
+  'Send a Warrior to Parley, then Pull Back: “Wise Withdrawal”. He raids in small ways and his people endure.',
+  'Send a Warrior to Parley, then Send an Elder: “Betrayed Trust”. A musket is fired, the elder falls, and there is nothing left but war.'
+ ]},
+ {h:'The Resistor: scenes written for the story',p:[
+  'The children held in a hut and their rescue, and the elder shot at a parley while wearing a possum-skin cloak, have no record behind them in this app’s sources.'
+ ]},
+ {h:'Who the Resistor is in the records',p:[
+  'The book does not name him. The records this app used name the man as Pemulwuy, a Bidjigal man from the Botany Bay area. Tench spelled the name “Pimelwi” when he wrote that Colbee and others named the man who speared the gamekeeper McEntire in December 1790. The National Museum of Australia, the Australian Dictionary of Biography and the Dictionary of Sydney use the name Pemulwuy.',
+  'The records from 1798 onwards: the Darug believed firearms could not kill him after his escapes. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 he was outlawed and rewards were offered. He was shot dead on or just before 2 June 1802. The National Museum says it is not certain who shot him, and that a later dispatch from London said cruelty toward First Nations people would be punished.'
+ ],src:['tench','nmaPem','adbPem','dosPem']}
+];
+F[2]=[
+ {h:'Thomas Freeman: how the eight paths end (from the book)',p:[
+  'March, then Fire into the Trees: “Survival with Regret”. He fires high on purpose. Tench says “Well done, lad!” and he gets extra rations.',
+  'March, then Charge Forward: “Hollow Victory”. A spear cuts his side, the Resistor slips away, he is made an overseer and his wound festers.',
+  'March, then Drop Your Musket and Call for a Truce: “Act of Resistance”. Tench’s men call him “Traitor”, put him in irons and lock him in his hut.',
+  'Lag Behind, then Follow the Warrior’s Gesture: “Unexpected Mercy”. A warrior leads him out of the bush and he avoids the hunting patrols afterwards.',
+  'Lag Behind, then Raise the Musket: “Fearful Escape”. Tench calls him “Deserter” and puts irons on his wrists.',
+  'Slip Away, then Stay and Keep Talking: “A Small Bridge”. He talks to a Bidjigal woman gathering yams about the land and about Bennelong.',
+  'Slip Away, then Hide in the Bushes: “Lost Chance”. He returns to the settlement and says nothing.',
+  'Slip Away, then Run Back to the Colony: “Safe but Unchanged”.'
+ ]},
+ {h:'Thomas Freeman: records about a person in one path',p:[
+  'Bennelong and Colebee were seized at Manly Cove on 25 November 1789 on Governor Phillip’s order. Bennelong stayed a captive until he escaped in May 1790.',
+  'The cave, the warrior who points to a path and the woman gathering yams are written for the story. No record in this app’s sources shows them.'
+ ],src:['bennelong']}
+];
+F[3]=[
+ {h:'Thomas Curtis: how the four paths end (from the book)',p:[
+  'Ask Warra to Help You Understand the Land: “Beginning to See”. Warra shows him the trees, the water and the plants, and Robert learns names in the Gadigal language.',
+  'Thank Him Awkwardly and Let Him Go: “Missed Opportunity”. Curtis keeps farming the English way and the land keeps resisting him. The book says the Romsey posters never mentioned that the land already had its own people.',
+  'Gesture That You Would Like to Fish with Him: “Shared Waters”. Warra shows him how to stand in the shallows of the Cooks River and they share the catch.',
+  'Find a Simple Way to Thank Him: “Small Thanks, Lasting Change”. Curtis offers damper and a tin cup of tea, Warra accepts, and Curtis starts to notice the land differently.'
+ ]}
+];
+F[4]=[
+ {h:'Warra: what he does on each path (from the book)',p:[
+  'If Curtis asks for help: Warra studies him, nods, and shows which trees flower at which time, how the ground near the river keeps water in drought, and which plants are safe to eat or use as medicine.',
+  'If Curtis thanks him awkwardly: Warra turns and disappears into the bush.',
+  'If Curtis mimes fishing: Warra walks to a bend in the river, shows how to stand still in the shallows, points out where the fish hide and shares the catch.',
+  'If Curtis offers damper and tea: Warra accepts them “without ceremony”, gives “a single nod” and walks back into the bush.'
+ ]}
+];
+var shot=[{h:'Could he be shot? The records that are held back',p:[
+  'After his escapes in 1797 the Darug believed that firearms could not kill him. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 he was outlawed and rewards were offered for his capture or death.',
+  'He was shot dead on or just before 2 June 1802. The National Museum says it is not certain who shot him.'
+ ],src:['adbPem','nmaPem']}];
+window.FS.teacher={files:F,topics:{shot:shot},all:[].concat(F[1],F[2],F[3],F[4]),teacherOnlySrc:['bennelong']};
+})();

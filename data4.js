@@ -62,7 +62,7 @@ window.FS.spot = {
    reveal: [
     'If the march is “tomorrow” and the march was on 14 December 1790, then “earlier this year” fits the March wreck. But the spearing was only days before the march, in the same month, so “last December” does not fit.',
     'If the chapter is set in 1791, “last December” would fit December 1790. But then “earlier this year” does not fit a wreck in March 1790, and the march of 14 December 1790 would not be “tomorrow”. No single year makes all three clues fit the records.',
-    'This could be a slip in the wording, or the story may have moved events closer together or further apart on purpose. The app’s Board notes that the story joins events from 1790, 1792 and 1797 into one time.'
+    'This could be a slip in the wording, or the story may have moved events closer together or further apart on purpose. The app’s Board notes that the story joins events from several different years into one time.'
    ],
    open: 'Only the author can say which it is. The app cannot tell a slip from a choice here.',
    status: 'check', src: ['sirius', 'tench', 'nmaPem']},

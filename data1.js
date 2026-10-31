@@ -4,9 +4,9 @@ title: 'First Steps on Ancient Ground',
 flipbook: 'https://heyzine.com/flip-book/d73a2fe642.html',
 S: {
  tench: ['Watkin Tench, A Complete Account of the Settlement at Port Jackson (1793), Project Gutenberg', 'https://www.gutenberg.org/files/3534/3534-h/3534-h.htm'],
- nmaPem: ['National Museum of Australia, Defining Moments: Pemulwuy', 'https://www.nma.gov.au/defining-moments/resources/pemulwuy'],
- adbPem: ['Australian Dictionary of Biography: Pemulwuy (J. L. Kohen)', 'https://adb.anu.edu.au/biography/pemulwuy-13147'],
- dosPem: ['Dictionary of Sydney: Pemulwuy', 'https://dictionaryofsydney.org/entry/pemulwuy'],
+ nmaPem: ['National Museum of Australia, Defining Moments: a Bidjigal leader of the 1790s', 'https://www.nma.gov.au/defining-moments/resources/pemulwuy'],
+ adbPem: ['Australian Dictionary of Biography: a Bidjigal leader of the 1790s (J. L. Kohen)', 'https://adb.anu.edu.au/biography/pemulwuy-13147'],
+ dosPem: ['Dictionary of Sydney: a Bidjigal leader of the 1790s', 'https://dictionaryofsydney.org/entry/pemulwuy'],
  nmaPox: ['National Museum of Australia, Defining Moments: Smallpox epidemic', 'https://www.nma.gov.au/defining-moments/resources/smallpox-epidemic'],
  sirius: ['Wikipedia: HMS Sirius (1786), citing the journals of John Hunter and William Bradley', 'https://en.wikipedia.org/wiki/HMS_Sirius_(1786)'],
  rations: ['University of Wollongong, First Fleet Stories: Rations', 'http://firstfleet.uow.edu.au/s_rations.html'],
@@ -45,12 +45,12 @@ caseFile: [
  '  1. The Resistor. The book gives no name and no interview.',
  '  2. Thomas Freeman, clerk in the colony’s store, 1790.',
  '  3. Thomas Curtis, English farm worker, arrives 1840.',
- '  4. Warra, the Gadigal man who guides Curtis.',
+ '  4. Warra, a man named in Thomas Curtis’s chapter.',
  'Evidence held: five damaged fragments, A to E. Names, dates and places are missing.'
 ],
 summary: [
  'First Steps on Ancient Ground is a pick-a-path story. You choose one of three characters: a resistance warrior called the Resistor, a clerk named Thomas Freeman in the starving colony of 1790, or a farm worker named Thomas Curtis who arrives in 1840. At the back, the Detective Hunt Log Book gives five damaged records and asks one question: who is the Resistor, and what do the records say?',
- 'This app is a companion to that question. Each character has a witness file with four parts: what the book says about them, what they said, what public records show, and what nobody asked. The clue pages let you work through the five fragments. The board sets statements from the book next to statements from the records, so you can see where they match and where they do not. The timeline puts every date in one place. At the end you write your own finding.',
+ 'This app is a companion to that question. Each character has a witness file with four parts: what the book says about them, what they said, what public records show, and what nobody asked. The clue pages let you work through the five fragments. The board sets statements from the book next to statements from the records, so you can see where they match and where they do not. At the end you write your own finding.',
  'The book does not give one answer, and neither does this app. It tells you what is in the book, what is in the records, and what was written for the story. You decide what the evidence supports.'
 ],
 readingPath: [
@@ -59,7 +59,6 @@ readingPath: [
  ['Work through clues A to E.', 'They are the five damaged records from the Log Book. Collect clues and score each source.'],
  ['Use the board.', 'Pair statements from the book and from the records that do not fit together. Say whom you trust and write a finding.'],
  ['Spot the discrepancies.', 'Find four places where the book and the records do not agree. Choose a reason for each and write why.'],
- ['Explore the timeline.', 'Filter by character. See which dates come from the book and which come from public records.'],
  ['Write your finding.', 'Then read what the records can and cannot tell us.']
 ],
 witnesses: [
@@ -86,16 +85,17 @@ witnesses: [
   ],
   said: [
    ['Page 11 (Scout the Farm)', '“Fire can be a weapon or a way to stay hidden. Tonight, we may need both.” He whispers this to the warrior beside him. It is the only sentence the book gives him.'],
-   ['Pages 7 to 18', 'He mostly acts. He lights torches, whistles for a retreat, steps toward Thomas Freeman with his spear lowered, sends a warrior to parley, sends an elder to talk, or pulls back.'],
-   ['The nine path ends', 'Successful Strike; Tentative Connection; Escalated Conflict; Heroic Rescue; Planned Strike; Tactics and Patience; Fiery Retribution; Wise Withdrawal; Betrayed Trust.']
+   ['Pages 7 to 18', 'He mostly acts, and the book gives him almost no words. What he does depends on your choices.'],
+   ['The path ends', 'The book gives him nine path ends. They are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
   ],
   records: [
-   {t: 'Watkin Tench wrote that on the night of 9 to 10 December 1790 a sergeant of marines and three convicts went on a shooting party near Botany Bay. One of them was McEntire (also spelled McIntyre), the Governor’s gamekeeper. Tench says a young man “with a speck or blemish on his left eye” threw a spear and wounded him in the left side. Tench also wrote that Colbee and other men from the area repeated the name of the man who did it, which he spelled “Pimelwi”, and said he lived at Botany Bay. This is the earliest record in this app that links the spearing to the man later known as Pemulwuy. Tench’s own word for him was “murderer”, which shows whose side the writer was on.', src: ['tench']},
-   {t: 'The National Museum of Australia says Pemulwuy, a Bidjigal man from the Botany Bay area, had “a speck” in one eye and was involved in the wounding of McIntyre on 10 December 1790. It says McIntyre was “feared and hated by the Eora people”, and that the attack may have been payback for breaking Eora law and for violence against First Nations people.', src: ['nmaPem']},
-   {t: 'The Australian Dictionary of Biography says that from 1792 Pemulwuy led raids at Prospect, Toongabbie, the Georges River, Parramatta, Brickfield Hill and the Hawkesbury River. It says the raids were made for food, “particularly corn”, or as payback for atrocities. David Collins, who was in the colony, suggested most of the attacks followed the settlers’ “own misconduct”, including the kidnapping of Aboriginal children. The National Museum says the first raid was at Prospect in May 1792.', src: ['adbPem', 'nmaPem']},
+   {t: 'Watkin Tench wrote that on the night of 9 to 10 December 1790 a sergeant of marines and three convicts went on a shooting party near Botany Bay. One of them was McEntire (also spelled McIntyre), the Governor’s gamekeeper. Tench says a young man “with a speck or blemish on his left eye” threw a spear and wounded him in the left side. Tench also wrote that Colbee and other men from the area gave the name of the man who did it and said he lived at Botany Bay. Tench’s own word for him was “murderer”, which shows whose side the writer was on.', src: ['tench']},
+   {t: 'The National Museum of Australia says a Bidjigal man from the Botany Bay area had “a speck” in one eye and was involved in the wounding of McIntyre on 10 December 1790. It says McIntyre was “feared and hated by the Eora people”, and that the attack may have been payback for breaking Eora law and for violence against First Nations people.', src: ['nmaPem']},
+   {t: 'The Australian Dictionary of Biography says that from 1792 this Bidjigal leader led raids at Prospect, Toongabbie, the Georges River, Parramatta, Brickfield Hill and the Hawkesbury River. It says the raids were made for food, “particularly corn”, or as payback for atrocities. David Collins, who was in the colony, suggested most of the attacks followed the settlers’ “own misconduct”, including the kidnapping of Aboriginal children. The National Museum says the first raid was at Prospect in May 1792.', src: ['adbPem', 'nmaPem']},
    {t: 'In March 1797 he led a raid on the government farm at Toongabbie. Settlers and soldiers followed his group to Parramatta. He was wounded by seven pieces of buckshot, was taken to hospital, and escaped with an iron on his leg. By late April 1797 he was seen near Botany Bay, recovered.', src: ['adbPem', 'dosPem']},
-   {t: 'After those escapes the Darug believed that firearms could not kill him. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 he was outlawed. He was shot dead on or just before 2 June 1802.', src: ['adbPem', 'nmaPem']},
-   {t: 'The book’s reading list names the National Museum’s Pemulwuy page and Eric Willmot’s Pemulwuy: The Rainbow Warrior (1987). The Dictionary of Sydney calls Willmot’s book “a brilliant work of fiction”, so it is a novel built on records and not a record itself.', src: ['dosPem']}
+   {t: 'After those escapes the Darug believed that firearms could not kill him.', src: ['adbPem']},
+   {t: 'The records from 1798 onwards, the name of the man in the records and what became of him are held back until you lock in your finding on the “My finding” page. Teachers can open them under “Teacher answers (spoilers)” below.', src: []},
+   {t: 'The book’s reading list names a National Museum page and a 1987 novel by Eric Willmot about the same leader. The Dictionary of Sydney calls Willmot’s book “a brilliant work of fiction”, so it is a novel built on records and not a record itself.', src: ['dosPem']}
   ],
   notAsked: [
    ['Why was the gamekeeper speared?', 'Every record of the spearing was written by the colony’s officers. Historians suggest a reason, but the records do not say what the people involved said at the time.'],
@@ -112,8 +112,7 @@ witnesses: [
   made: [
    'The night raid at Prospect with fifty warriors and a crow guide.',
    'The meeting with Thomas Freeman across the flames.',
-   'The children held in a hut and their rescue.',
-   'The elder shot at a parley, with a possum-skin cloak.',
+   'The scenes that follow each of your choices, including every path end.',
    'Every spoken line and every thought. The book says dialogue and thoughts have been imagined.'
   ]
  },
@@ -139,10 +138,7 @@ witnesses: [
   ],
   said: [
    ['Page 26 (thinking)', '“What if the Resistor is not the savage the officers say he is, but just a man trying to protect his people and his Country?”'],
-   ['Page 30 (Call for a Truce)', '“Stop! Enough!” Tench’s men answer “Traitor!” and put him in irons.'],
-   ['Page 34 (Parley)', '“No harm, friend.” He says it to a Bidjigal woman gathering yams.'],
-   ['Page 35 (Stay and Keep Talking)', 'He talks about the land and about Bennelong, “a real man with a complicated life”.'],
-   ['Said to him', 'Tench: “Well done, lad!” (page 28). Tench: “Deserter” (page 33).']
+   ['After page 26', 'What Freeman says and what is said to him depends on your choices. The lines from the paths are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
   ],
   records: [
    {t: 'HMS Sirius was the flagship of the First Fleet. She was wrecked on a reef at Norfolk Island on 19 March 1790 while landing stores. Her crew were stranded until 21 February 1791. Tench’s printed text gives the date of the wreck as “the 19th of February”, so the date needs checking in the original. The ship carried ten guns and was rated “nominally” as a sixth-rate.', src: ['sirius', 'tench']},
@@ -150,23 +146,23 @@ witnesses: [
    {t: 'About the flour, Tench wrote that it was “the remnant of what was brought from the Cape, by the Sirius, and was good”, and that soldiers and convicts boiled it up with greens.', src: ['tench']},
    {t: 'On 9 to 10 December 1790 the gamekeeper was speared. Governor Phillip ordered an expedition. Tench asked him to change the plan from killing ten men to capturing six. The order as Tench printed it was to bring in six men who lived near the head of Botany Bay or, if that could not be done, to put six to death. The party carried ropes, and hatchets and bags to carry the heads of anyone killed.', src: ['tench']},
    {t: 'Tench listed his party on the first march, on 14 December 1790: himself, a captain, two lieutenants, two surgeons, three sergeants, three corporals and forty private soldiers. No clerk is named. He wrote that on the first day they walked until four o’clock “without seeing a native”. On the second day they saw five men on a beach, who ran off, found empty huts with only fish spears, and met Colbee, who told them the man they wanted had gone south. A second march on 22 December found the huts empty, and Tench called it a “fruitless peregrination”.', src: ['tench']},
-   {t: 'Bennelong and Colebee were seized at Manly Cove on 25 November 1789 on Governor Phillip’s order. Bennelong stayed a captive until he escaped in May 1790.', src: ['bennelong']}
+   {t: 'A record about a person named in one of Freeman’s paths is held back so it does not spoil the story. Teachers can open it under “Teacher answers (spoilers)” below.', src: []}
   ],
   notAsked: [
    ['Was a clerk ever sent on the march?', 'Tench lists his party by rank. A commissary clerk is not among them, so the story’s march is an addition and not a record.'],
    ['What did the people in the store think of the order to bring back heads?', 'Tench wrote that he asked Phillip to change it. He does not say what the soldiers, convicts or clerks thought.'],
    ['Was there a Thomas Freeman?', 'No source used for this app names a clerk called Thomas Freeman on the Sirius. A crew list and the colony’s muster have not been checked yet, so this app treats him as a story character.'],
-   ['Who was asked about the Bidjigal woman at the creek?', 'Nobody. She is in the story and in no record. The book gives her no name and no words.']
+   ['Who was asked about the people Freeman might meet in the bush?', 'Nobody. They are in the story and in no record. The book gives them no names.']
   ],
   real: [
    'The Sirius, her wreck at Norfolk Island, the cut ration and Captain Watkin Tench.',
    'The spearing of the Governor’s gamekeeper in December 1790 and the marches that followed.',
-   'Bennelong, and his capture.'
+   'Other people and events named in Freeman’s paths (see “Teacher answers (spoilers)”).'
   ],
   made: [
    'Thomas Freeman himself, as far as this app has checked.',
    'Freeman’s place on the march, the spear that grazes a marine, and Tench’s order to fire.',
-   'The cave, the warrior who points to a path, the woman gathering yams, and every choice and path end.',
+   'Every scene that follows your choices, and every path end.',
    'Every spoken line and every thought.'
   ],
   image: {src: 'images/raper-sirius-1790.jpg', alt: 'A watercolour of the ship Sirius tilted in rough water on a reef off an island. A British flag flies on a pole at the right, and pine trees stand on the shore at the left.', cap: 'The melancholy loss of HMS Sirius off Norfolk Island, March 19th 1790. Watercolour by George Raper, who sailed with the First Fleet.', credit: 'George Raper (1769–1796). National Library of Australia, nla.pic-an21511971. Via Wikimedia Commons. Public domain.'}
@@ -174,7 +170,7 @@ witnesses: [
  {
   n: 3, key: 'curtis', name: 'Thomas Curtis', fileLabel: 'Witness File 3',
   role: 'Farm worker from Hampshire who sails to New South Wales in 1840',
-  teaser: 'Leaves poverty and the workhouse behind and finds the land is already occupied.',
+  teaser: 'Leaves poverty and the workhouse behind for a new start in New South Wales.',
   chapter: 'Thomas Curtis (printed pages 44 to 49)',
   box: [
    'WITNESS FILE 3',
@@ -193,9 +189,7 @@ witnesses: [
    'They settled near the Cooks River, south of Sydney. The book says drought came and by 1842 the river had shrunk to muddy pools. One evening he and Robert go west to look for better land and are lost, and a Gadigal man guides them back.'
   ],
   said: [
-   ['Pages 46 to 49', 'The book gives Curtis no spoken words. He points at the bush, mimes fishing, offers damper and a tin cup of tea, or gives “a few clumsy words of thanks”.'],
-   ['The four path ends', 'Beginning to See; Missed Opportunity; Shared Waters; Small Thanks, Lasting Change.'],
-   ['Page 47 (Missed Opportunity)', '“The posters in Romsey never mentioned that this land already had its own people who knew how to live here.” This is the book’s account of what he thinks.']
+   ['Pages 46 to 49', 'The book gives Curtis no spoken words. What he does depends on your choices. The paths and their ends are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
   ],
   records: [
    {t: 'A transcription of the Victorian shipping lists says the 468-ton barque Andromache, Captain Thomas New, sailed from London on 28 February 1840 on a “113 day passage” and arrived at Port Phillip on 24 June 1840 with assisted immigrants under Surgeon-Superintendent Dr George Harvey. Eleven people went on to Sydney, leaving Port Phillip on 29 July and arriving on 2 August 1840. The page lists them as a “Curtis family of 4: Thomas 37 with Mary Ann 29, Robert 16 and Margaret 18”. It cites the Sydney Gazette of 4 August 1840 for the passengers.', src: ['andro']},
@@ -218,14 +212,14 @@ witnesses: [
   ],
   made: [
    'Everything said about Thomas, Mary Ann and Robert as people. The book says some dialogue and thoughts are imagined.',
-   'The evening lost in the bush, the meeting with Warra, and all four path ends.',
+   'The evening lost in the bush, the meeting with Warra, and every path end.',
    'Every thought and every gesture.'
   ]
  },
  {
   n: 4, key: 'warra', name: 'Warra', fileLabel: 'Witness File 4',
   role: 'Gadigal man who guides Curtis and Robert back to the river',
-  teaser: 'Speaks no words in the book. He shows, and Curtis learns.',
+  teaser: 'Meets Curtis and his son near the Cooks River. Speaks no words in the book.',
   chapter: 'Thomas Curtis (printed pages 44 to 49)',
   box: [
    'WITNESS FILE 4',
@@ -241,9 +235,7 @@ witnesses: [
   ],
   said: [
    ['Page 45', 'Nothing in words. He shows the way back by pointing.'],
-   ['Page 46 (Ask Warra to Help)', 'He studies Curtis, nods, and shows which trees flower at which time, how the ground near the river keeps water in drought, and which plants are safe to eat or use as medicine. Robert learns the names of birds and trees in the Gadigal language.'],
-   ['Page 48 (Fish with Him)', 'He walks to a bend in the river, shows how to stand still in the shallows, points out where fish hide, and shares the catch.'],
-   ['Page 49 (Thank Him)', 'He accepts damper and tea “without ceremony” and gives “a single nod”.']
+   ['Pages 46 to 49', 'What Warra does next depends on your choices. It is not listed here so it does not spoil the story. Teachers can find it under “Teacher answers (spoilers)” below.']
   ],
   records: [
    {t: 'No source used for this app names a man called Warra. The book says he wants to be known by that name, and this app treats him as a story character.', src: []},
@@ -251,7 +243,7 @@ witnesses: [
    {t: 'Aboriginal people kept fishing the Cooks River after 1788. In the 1830s the naturalists James Backhouse and George Walker saw a fishing party of three men and two women speared fish from bark canoes on the river. In 1868 the river’s Aboriginal people were still fishing and had been granted a fishing boat.', src: ['cooks']}
   ],
   notAsked: [
-   ['Did Warra want to help?', 'The story shows what Curtis learns. It does not show what Warra thinks, or whether he wanted Curtis there.'],
+   ['Did Warra want to help?', 'The story is told from Curtis’s side. It does not show what Warra thinks, or whether he wanted Curtis there.'],
    ['Where did people live and camp by 1840?', 'The records show people fishing the river, but say little about where families lived.'],
    ['Whose voice should tell this?', 'The book says it does not speak for clans or living traditions. Public records can show that people were present. They cannot give Warra’s own account.']
   ],
@@ -260,7 +252,7 @@ witnesses: [
    'Colonists’ records name the Cadigal (Gadigal) and Wanngal clans for this area, with uncertainty about the exact lands.'
   ],
   made: [
-   'Warra, the meeting, the knowledge he shows, and the name he “wants to be known” by.',
+   'Warra, the meeting, and the name he “wants to be known” by.',
    'Every gesture and every outcome.'
   ]
  }

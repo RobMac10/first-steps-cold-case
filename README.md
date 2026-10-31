@@ -4,7 +4,7 @@ A free, static companion app for Robin McKean's book *First Steps on Ancient Gro
 (https://heyzine.com/flip-book/d73a2fe642.html).
 
 It has a case file, four witness files, clues from the book's Detective Hunt Log Book,
-a board that compares statements, a finding page, an interactive timeline, and a "Spot the Discrepancy" activity (four places where the book and the records disagree, with a reason picker and a teacher note).
+a board that compares statements, a finding page, and a "Spot the Discrepancy" activity (four places where the book and the records disagree, with a reason picker and a teacher note).
 
 - Plain HTML, CSS and JavaScript. No build step. No tracking. No cookies.
 - Answers are saved only in the reader's own browser (`localStorage`, key `first-steps-cold-case-v1`).
@@ -14,10 +14,14 @@ a board that compares statements, a finding page, an interactive timeline, and a
 ## Files
 - `index.html`, `styles.css`, `app.js`: the app.
 - `data1.js`: case file, sources, witness files.
-- `data2.js`: timeline events and board questions.
-- `data3.js`: Log Book items, clues, class questions, credits, open checks, finding.
+- `data2.js`: board questions.
+- `data3.js`: Log Book items, clues, class questions, credits, open checks, finding, and the teacher-only answers.
 - `data4.js`: the Spot the Discrepancy activity.
 - `images/`: credited public-domain images.
+- `archive/`: material removed from the app, kept so nothing is lost. It is not linked from the app. It holds the old timeline data and code, the Fowkes sketch, and copies of the files as they were before the spoiler redaction (git tag `pre-spoiler-redact`). It contains spoilers.
+
+## Spoilers
+The app keeps how the stories end, and who the Resistor was, out of the student pages. Teachers can open a closed box headed "Teacher answers (spoilers)" on the witness files, the "Could he be shot?" board question and Class mode.
 
 ## Run locally
 `python3 -m http.server` in this folder, then open http://localhost:8000/

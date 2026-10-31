@@ -2,7 +2,7 @@
 'use strict';
 const T=window.FS,KEY='first-steps-cold-case-v1';
 let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
-const fresh=()=>{st.unlocked=st.unlocked||{};st.items=st.items||{};st.board=st.board||{};st.finding=st.finding||{};st.write=st.write||{};st.tl=st.tl||{r:true,f:true,c:true,w:true,src:'all',q:''};st.hyp=st.hyp||'';st.spot=st.spot||{};};fresh();
+const fresh=()=>{st.unlocked=st.unlocked||{};st.items=st.items||{};st.board=st.board||{};st.finding=st.finding||{};st.write=st.write||{};delete st.tl;st.hyp=st.hyp||'';st.spot=st.spot||{};};fresh();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const P=a=>a.map(x=>'<p>'+esc(x)+'</p>').join('');
@@ -21,6 +21,7 @@ const wsum=s=>(s||'').trim().split(/\s+/).filter(Boolean).length;
 function figure(img){
  return '<figure><img src="'+esc(img.src)+'" alt="'+esc(img.alt)+'" loading="lazy"><figcaption>'+esc(img.cap)+'<span class="credit">'+esc(img.credit)+'</span></figcaption></figure>';
 }
+const spoilerBox=secs=>secs&&secs.length?'<details class="spoiler"><summary>Teacher answers (spoilers)</summary><div><p class="note"><strong>Spoilers.</strong> This section gives away how the stories end and who the Resistor was. Read the book first. It is closed until you open it.</p>'+secs.map(x=>'<h3>'+esc(x.h)+'</h3>'+P(x.p)+srcLinks(x.src)).join('')+'</div></details>':'';
 const screens={};
 
 /* ---------- HOME ---------- */
@@ -34,7 +35,7 @@ screens.home=()=>{
  '<h2>How to use this app</h2><p>The app keeps spoilers back. Each witness file opens when you say you have finished that character’s story in the book. Nobody checks. It works best if you read first.</p><ol class="steps">'+T.readingPath.map(s=>'<li>'+esc(s[0])+'<small>'+esc(s[1])+'</small></li>').join('')+'</ol>'+
  '<div class="status" aria-label="Your progress"><span class="'+(nW==4?'done':'')+'">Witness files open: '+nW+' of 4</span><span class="'+(nI==5?'done':'')+'">Clues scored: '+nI+' of 5</span><span class="'+(nT==T.topics.length?'done':'')+'">Board questions locked in: '+nT+' of '+T.topics.length+'</span></div>'+
  '<h2>In the book, in the record, from the story</h2><p>Every card in this app keeps these apart.</p><p>'+badge('book')+'What the book says. It is not a record.</p><p>'+badge('real')+'Something in a public record, with the source named.</p><p>'+badge('made')+'Written for the story. This app found no record for it. The book says some dialogue and thoughts are imagined.</p><p>'+badge('check')+'The book and the records do not fit, or the app could not check.</p>'+
- '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/timeline">See the timeline</a></div><div class="grid c2"><a class="btn" href="#/spot">Spot the Discrepancy</a><a class="btn" href="#/class">Class mode</a></div>';
+ '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/spot">Spot the Discrepancy</a></div><div class="grid c2"><a class="btn" href="#/records">Real records</a><a class="btn" href="#/class">Class mode</a></div>';
 };
 
 /* ---------- WITNESSES ---------- */
@@ -56,7 +57,7 @@ screens.witnesses=(arg)=>{
  (w.image?figure(w.image):'')+
  '<h2>Not asked</h2><p>These are questions nobody put to the witness, or that the sources leave open.</p>'+w.notAsked.map(e=>'<div class="entry"><div class="tag">'+esc(e[0])+'</div><p>'+esc(e[1])+'</p></div>').join('')+
  '<h2>What is real, what is from the story</h2>'+panel('real','In a record',w.real)+panel('made','From the story',w.made)+
- '<div class="pager">'+(n>1?'<a class="btn" href="#/witnesses/'+(n-1)+'">&larr; File '+(n-1)+'</a>':'')+(n<4?'<a class="btn dark" href="#/witnesses/'+(n+1)+'">File '+(n+1)+' &rarr;</a>':'<a class="btn dark" href="#/clues">Go to the clues &rarr;</a>')+'</div>'+
+ spoilerBox(T.teacher.files[n])+'<div class="pager">'+(n>1?'<a class="btn" href="#/witnesses/'+(n-1)+'">&larr; File '+(n-1)+'</a>':'')+(n<4?'<a class="btn dark" href="#/witnesses/'+(n+1)+'">File '+(n+1)+' &rarr;</a>':'<a class="btn dark" href="#/clues">Go to the clues &rarr;</a>')+'</div>'+
  (st.classAll?'':'<p style="margin-top:14px"><button class="btn small" data-relock="'+n+'">Hide this file again</button></p>');
  return h;
 };
@@ -124,6 +125,7 @@ screens.board=(arg)=>{
   (b.a&&b.b&&!(t.pair.includes(b.a)&&t.pair.includes(b.b))?'<p class="wc">You paired a different two. That is fine. Compare your pair with this one.</p>':'')+
   P(t.reveal)+(t.check?'<p>'+badge('check')+esc(t.check)+'</p>':'')+srcLinks(t.src)+'</section>';
  }
+ h+=spoilerBox(T.teacher.topics[t.id]);
  h+='<div class="pager">'+(i>0?'<a class="btn" href="#/board/'+T.topics[i-1].id+'">&larr; Previous</a>':'<a class="btn" href="#/board">&larr; All questions</a>')+(i<T.topics.length-1?'<a class="btn dark" href="#/board/'+T.topics[i+1].id+'">Next question &rarr;</a>':'<a class="btn dark" href="#/board/finding">My finding &rarr;</a>')+'</div>';
  return h;
 };
@@ -144,62 +146,11 @@ function findingScreen(){
  return h;
 }
 
-/* ---------- TIMELINE ---------- */
-const FROM={book:'In the book',record:'In the records',both:'In both',story:'From the story'};
-const yearOf=e=>e.k>=99999990?'No date in the book':String(Math.floor(e.k/10000));
-function tlFiltered(){
- const tl=st.tl,q=(tl.q||'').toLowerCase().trim();
- return T.events.filter(e=>{
-  if(!e.s.some(x=>tl[x]))return false;
-  if(tl.src=='book'&&!['book','both','story'].includes(e.f))return false;
-  if(tl.src=='record'&&!['record','both'].includes(e.f))return false;
-  if(q&&(e.t+' '+e.x+' '+e.d).toLowerCase().indexOf(q)<0)return false;
-  return true;
- }).sort((a,b)=>a.k-b.k);
-}
-function tlItem(e){
- return '<article class="ev'+(e.f=='story'?' story':'')+'" id="ev-'+e.id+'" tabindex="-1" aria-labelledby="h-'+e.id+'"><div class="dt">'+esc(e.d)+'</div><h3 id="h-'+e.id+'">'+esc(e.t)+'</h3><div class="tags">'+badge(e.b)+'<span>'+esc(FROM[e.f])+'</span>'+e.s.map(x=>'<span>'+esc(T.strands[x])+'</span>').join('')+'</div><p>'+esc(e.x)+'</p>'+srcLinks(e.src)+'</article>';
-}
-function tlList(){
- const ev=tlFiltered();let h='',yr='';
- if(!ev.length)return '<p class="note">No events match. Tick more characters, or clear the search.</p>';
- ev.forEach(e=>{const y=yearOf(e);if(y!=yr){yr=y;h+='<h2 class="yr">'+esc(y)+'</h2>';}h+=tlItem(e);});
- return h;
-}
-function tlStrip(){
- const ev=tlFiltered().filter(e=>e.k<99999990&&e.k<19000000),x0=1788,x1=1850,W=1000,H=118,px=y=>30+(y-x0)/(x1-x0)*(W-50);
- const rows={r:20,f:42,c:64,w:86};
- let s='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true" focusable="false">';
- for(let y=1790;y<=1850;y+=10){s+='<line x1="'+px(y)+'" x2="'+px(y)+'" y1="6" y2="98" stroke="#b9a77d" stroke-width="1"/><text x="'+px(y)+'" y="114" text-anchor="middle">'+y+'</text>';}
- ev.forEach(e=>{const yr=Math.floor(e.k/10000)+((Math.floor(e.k/100)%100)-1)/12;e.s.forEach(sk=>{s+='<circle class="dot '+sk+'" data-jump="'+e.id+'" cx="'+px(yr).toFixed(1)+'" cy="'+rows[sk]+'" r="6"><title>'+esc(e.d+': '+e.t)+'</title></circle>';});});
- return s+'</svg>';
-}
-screens.timeline=()=>{
- const tl=st.tl,ev=tlFiltered(),years=[...new Set(ev.map(yearOf))];
- return '<h1>Timeline</h1><p class="lead">'+esc(T.tlIntro)+'</p>'+
- '<form class="filters" onsubmit="return false" aria-label="Timeline filters"><fieldset><legend>Show events for</legend><div class="chk">'+Object.keys(T.strands).map(k=>'<label><input type="checkbox" data-tls="'+k+'"'+(tl[k]?' checked':'')+'> '+esc(T.strands[k])+'</label>').join('')+'</div></fieldset>'+
- '<fieldset><legend>Where the date comes from</legend><div class="chk">'+[['all','Everything'],['book','Dates the book gives, and story scenes'],['record','Public records']].map(o=>'<label><input type="radio" name="tlsrc" value="'+o[0]+'" data-tlsrc="1"'+(tl.src==o[0]?' checked':'')+'> '+esc(o[1])+'</label>').join('')+'</div></fieldset>'+
- '<label for="tlq">Search the timeline</label><input type="search" id="tlq" data-tlq="1" value="'+esc(tl.q||'')+'" autocomplete="off">'+
- '<label for="tlj">Jump to a year</label><select id="tlj" data-tljump="1">'+'<option value="">Choose a year</option>'+years.map(y=>'<option value="'+esc(y)+'">'+esc(y)+'</option>').join('')+'</select>'+
- '<p class="wc" id="tlcount" aria-live="polite">Showing '+ev.length+' of '+T.events.length+' events.</p></form>'+
- '<div class="legend" aria-hidden="true"><span class="r">The Resistor</span><span class="f">Thomas Freeman</span><span class="c">Thomas Curtis</span><span class="w">Wider history</span></div>'+
- '<div class="tlstrip" id="tlstrip">'+tlStrip()+'</div><p class="wc">The strip shows 1788 to 1850. The 1992 entry is only in the list. Tap a dot to jump to it.</p>'+
- figure(T.tlImage)+
- '<div id="tlist">'+tlList()+'</div>';
-};
-function tlUpdate(){
- const ev=tlFiltered();
- const l=document.getElementById('tlist'),s=document.getElementById('tlstrip'),c=document.getElementById('tlcount'),j=document.getElementById('tlj');
- if(l)l.innerHTML=tlList();if(s)s.innerHTML=tlStrip();if(c)c.textContent='Showing '+ev.length+' of '+T.events.length+' events.';
- if(j){const years=[...new Set(ev.map(yearOf))];j.innerHTML='<option value="">Choose a year</option>'+years.map(y=>'<option value="'+esc(y)+'">'+esc(y)+'</option>').join('');}
-}
-function tlGo(id){const el=document.getElementById('ev-'+id);if(el){el.scrollIntoView({block:'start'});el.focus({preventScroll:true});}}
-
 /* ---------- RECORDS ---------- */
 screens.records=()=>{
- const used=Object.keys(T.S).filter(k=>k!='flip');
+ const used=Object.keys(T.S).filter(k=>k!='flip'&&!T.teacher.teacherOnlySrc.includes(k));
  return '<h1>Real records</h1><p class="lead">The public sources behind the “In the record” cards, and starting points for the archive hunt.</p>'+
- '<h2>Archive hunt: starting points</h2><p>'+esc(T.huntNote)+'</p>'+
+ '<p class="note">'+badge('check')+'The pages linked here name the people in the records. If you want to work out who the Resistor is first, write your first idea on the Clues page before you open them.</p>'+'<h2>Archive hunt: starting points</h2><p>'+esc(T.huntNote)+'</p>'+
  '<div class="entry">'+T.hunt.map(h=>{const s=T.S[h[2]];return '<div class="rec"><p><strong>'+esc(h[0])+'</strong><br>'+esc(h[1])+'</p><p class="srcs"><a href="'+esc(s[1])+'" target="_blank" rel="noopener noreferrer">Open the source (opens in a new tab)</a></p></div>'}).join('')+'</div>'+
  '<h2>All sources used in this app</h2><ul class="placelist">'+used.map(k=>'<li><a href="'+esc(T.S[k][1])+'" target="_blank" rel="noopener noreferrer">'+esc(T.S[k][0])+' (opens in a new tab)</a></li>').join('')+'</ul>'+
  '<h2>Read next</h2>'+P(T.readNext)+
@@ -212,7 +163,7 @@ screens.class=()=>{
  const wcount=wr.fields.map(f=>wsum(w[f[0]])).reduce((a,b)=>a+b,0);
  return '<h1>Class mode</h1>'+P([T.classIntro])+
  '<details><summary>Notes for teachers</summary><div><ul>'+T.teacherNotes.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p>Teacher tools:</p><p><button class="btn small" data-classall="1">'+(st.classAll?'All files are unlocked on this device. Tap to lock again':'Unlock everything on this device')+'</button></p></div></details>'+
- '<h2>Activity: '+esc(T.spot.title)+'</h2><p>Students find four places where the book and the records do not agree, choose a reason for each and write why. It shows how historians compare sources.</p><p><a class="btn dark" href="#/spot">Open the activity</a></p>'+spotTeacher()+'<h3>Questions for the whole class</h3><ol class="q">'+T.spot.prompts.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol>'+
+ '<h2>Teacher answers</h2><p>Plot endings, the Resistor’s identity and the records that are held back from students are in a closed box. Open it only if you need it.</p>'+spoilerBox(T.teacher.all)+'<h2>Activity: '+esc(T.spot.title)+'</h2><p>Students find four places where the book and the records do not agree, choose a reason for each and write why. It shows how historians compare sources.</p><p><a class="btn dark" href="#/spot">Open the activity</a></p>'+spotTeacher()+'<h3>Questions for the whole class</h3><ol class="q">'+T.spot.prompts.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol>'+
  '<h2>Discussion questions</h2><p>Each group matches a part of the book. Use the group after you reach that part.</p>'+
  T.questions.map((g,i)=>'<details'+(i==0?' open':'')+'><summary>'+esc(g.h)+'</summary><div><ol class="q">'+g.q.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol></div></details>').join('')+
  '<h2>'+esc(wr.title)+'</h2><p class="wc">'+esc(wr.time)+'</p><ol class="q">'+wr.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol><p><strong>Sentence starters:</strong> '+wr.starters.map(esc).join(' &nbsp;·&nbsp; ')+'</p>'+
@@ -299,8 +250,8 @@ function buildPrint(){
 }
 
 /* ---------- ROUTER ---------- */
-const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['spot','Discrepancies'],['timeline','Timeline'],['records','Records'],['class','Class'],['about','About']];
-const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',spot:'Spot the Discrepancy',timeline:'Timeline',records:'Real records',class:'Class mode',about:'About'};
+const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['spot','Discrepancies'],['records','Records'],['class','Class'],['about','About']];
+const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',spot:'Spot the Discrepancy',records:'Real records',class:'Class mode',about:'About'};
 const main=document.getElementById('main'),nav=document.getElementById('nav');
 let first=true;
 function draw(){
@@ -323,7 +274,6 @@ function rerender(focusSel){
 window.addEventListener('hashchange',route);
 
 document.addEventListener('click',e=>{
- const dot=e.target.closest('[data-jump]');if(dot){tlGo(dot.dataset.jump);return;}
  const b=e.target.closest('button');if(!b)return;
  if(b.dataset.unlock){st.unlocked[b.dataset.unlock]=true;save();rerender('h2');}
  else if(b.dataset.relock){delete st.unlocked[b.dataset.relock];save();rerender('h1');}
@@ -343,9 +293,6 @@ document.addEventListener('change',e=>{
  const d=e.target.dataset||{};
  if(d.clue){const s=item(location.hash.split('/')[2]);s.clues[d.clue]=e.target.checked;save();}
  else if(d.sk=='pick'){spotOf(location.hash.split('/')[2]).pick=e.target.value;save();rerender('[data-sk="pick"]:checked');}
- else if(d.tls){st.tl[d.tls]=e.target.checked;save();tlUpdate();}
- else if(d.tlsrc){st.tl.src=e.target.value;save();tlUpdate();}
- else if(d.tljump){const y=e.target.value;if(y){const f=tlFiltered().find(x=>yearOf(x)==y);if(f)tlGo(f.id);}}
  else if(d.ik=='rel'){const s=item(location.hash.split('/')[2]);s.rel=+e.target.value;save();rerender('[data-ik="rel"]:checked');}
 });
 document.addEventListener('input',e=>{
@@ -357,7 +304,6 @@ document.addEventListener('input',e=>{
  else if(d.sk=='why'){const x=spotOf(location.hash.split('/')[2]);x.why=e.target.value;save();const btn=document.getElementById('spotlock');if(btn){const ok=spotReady(x);btn.disabled=!ok;document.getElementById('spothelp').textContent=ok?'Once you lock it in, you can see what the evidence shows.':'To lock in, choose a reason and write at least three words about why.';}}
  else if(d.hyp){st.hyp=e.target.value;save();}
  else if(d.ik=='why'){const s=item(location.hash.split('/')[2]);const had=s.rel&&wsum(s.why)>2;s.why=e.target.value;save();const now=s.rel&&wsum(s.why)>2;if(now&&!had){const pos=e.target.selectionStart;rerender('#why');const t=document.getElementById('why');if(t&&pos!=null){try{t.setSelectionRange(pos,pos)}catch(x){}}}}
- else if(d.tlq){st.tl.q=e.target.value;save();tlUpdate();}
 });
 window.addEventListener('beforeprint',buildPrint);
 document.getElementById('foot').innerHTML='<p><strong>No tracking. Your answers are saved only in this browser. Nothing is sent anywhere.</strong> <button class="btn small" id="clear">Clear my answers</button></p><p>Cultural care: this book and app deal with killing, kidnapping, disease and the removal of children, and use words of the period. <a href="#/about">Read the care note and acknowledgement.</a></p><p>Public-domain pictures, all credited. No AI images. A companion to the book by Robin McKean. <a href="'+esc(T.flipbook)+'" target="_blank" rel="noopener noreferrer">Open the book (opens in a new tab)</a>.</p>';
