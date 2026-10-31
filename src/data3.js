@@ -87,7 +87,7 @@ questions: [
  {h: 'Thomas Freeman', q: [
    'Freeman’s choices lead to different ends. Which choice would you make, and why?',
    'Tench wrote that he asked Phillip to change an order. What does that tell you about Tench? What does it not tell you?',
-   'Freeman is not named in the records the app found. Does that mean he did not exist?'
+   'If a person in a story is not named in the records you have found, does that mean he did not exist?'
  ]},
  {h: 'Thomas Curtis', q: [
    'Why did the Curtis family leave England? Which records support the book’s reasons?',
@@ -96,12 +96,12 @@ questions: [
  ]},
  {h: 'Comparing records', q: [
    'Pick one clash from the Board. Which side do you trust more, and why?',
-   'This app marks some things “From the story”. Why is it important to keep them separate from records?',
+   'Why is it important to keep what a story says apart from what the records say?',
    'Whose voices are missing from the records you have seen? How could you find out more safely?'
  ]}
 ],
 teacherNotes: [
- 'There is no answer key for the questions. The book does not give one answer, and neither does this app. The plot endings and the records held back from students are in the closed “Teacher answers (spoilers)” box on this page.',
+ 'There is no single answer key for the discussion questions. The book does not give one answer, and neither does this app. The plot endings, the Resistor’s identity and what the records show are behind the “Show answers” toggles, which are closed until you open them.',
  'Spot the Discrepancy shows students how historians compare sources. See the teacher note on that page and in Class mode.',
  'The book asks teachers to supplement the story with Indigenous voices and scholarship. Please follow your school’s protocols, and consider inviting a local Aboriginal education worker or Elder.',
  'The story and the records include killing and the removal of children. Preview the Resistor, Freeman and Board pages before class, and offer students the choice to stop.',
@@ -144,7 +144,7 @@ sureOptions: ['Very sure', 'Fairly sure', 'Not very sure', 'Not sure at all'],
 findingReveal: [
  'The book does not say who the Resistor is. It says the figure is inspired by a documented Bidjigal leader of the 1790s, and that it does not claim to speak for clans or living cultural traditions.',
  'What the records support: a Bidjigal man from the Botany Bay area was named by Colbee and others to Tench in December 1790 as the man who speared the Governor’s gamekeeper. Tench spelled his name “Pimelwi”. The National Museum, the Australian Dictionary of Biography and the Dictionary of Sydney name him Pemulwuy. Raids at Prospect and Toongabbie, wounds and an escape in 1797, and a death in 1802 are recorded. The book’s Resistor shares the gamekeeper, the Prospect raids, the wounds and the belief that he cannot be shot.',
- 'Records that were held back until now: the Darug believed firearms could not kill him after 1797. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 Pemulwuy was outlawed and rewards were offered. He was shot dead on or just before 2 June 1802, and the National Museum says it is not certain who shot him. A later dispatch from London said that cruelty toward First Nations people would be punished.',
+ 'Later records: the Darug believed firearms could not kill him after 1797. On 1 May 1801 Governor King ordered that Aboriginal people near Parramatta, the Georges River and Prospect could be shot on sight. In November 1801 Pemulwuy was outlawed and rewards were offered. He was shot dead on or just before 2 June 1802, and the National Museum says it is not certain who shot him. A later dispatch from London said that cruelty toward First Nations people would be punished.',
  'What does not match: the order of events (the story joins 1790, 1792 and 1797 into one time), the soldiers’ belief in 1790, Freeman on the march and at Prospect, the fight on the march, and the details of the night raid. Those are the story’s.',
  'What the records cannot tell us: why the gamekeeper was speared in the words of the people involved, what the Bidjigal people said about the raids, and what Warra thought. Almost every record was written by the colony’s officers, who were fighting him. Item E is the only fragment from another point of view, and its speaker and place are not known.',
  'So the case stays open. A careful finding says what the sources show, what the story adds, and what is missing. If your finding does that, it fits the book’s own rule: do not invent facts that cannot be supported by primary evidence.'
@@ -152,7 +152,7 @@ findingReveal: [
 about: 'This is a companion app for First Steps on Ancient Ground by Robin McKean, Perth, Western Australia. It is for readers 12 and older. Read the book first. Open it here:'
 });
 
-/* Teacher-only answers. Shown only inside a closed box headed "Teacher answers (spoilers)". */
+/* Teacher-only answers. Removed from the student version by build.js. */
 (function(){
 var F={};
 F[1]=[

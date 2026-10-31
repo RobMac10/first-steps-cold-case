@@ -2,7 +2,7 @@ window.FS = window.FS || {};
 Object.assign(window.FS, {
 trustOptions: ['The book’s own story text', 'A writer at the time, such as Tench', 'A government order or record', 'A later historian or museum', 'I cannot tell yet'],
 who: {b: 'In the book', r: 'In the record'},
-boardIntro: 'Each question sets statements from the book beside statements from public records. Pair two that do not fit together, say whom you trust, and write what you think the difference means. Then lock in your finding to see what the sources say. Some statements fit well. Some need a check. You decide.',
+boardIntro: 'Each question sets statements from the book beside statements from public records. Pair two that do not fit together, say whom you trust, and write what you think the difference means. {{T:Then lock in your finding to see what the sources say. Some statements fit well. Some need a check. You decide.}}{{S:Then lock in your finding. It is saved on this device and you can print it.}}',
 topics: [
  {id: 'when', gate: 2, title: 'When was the gamekeeper speared?', ask: 'Freeman’s chapter gives three time clues. Which statements do not fit together?',
   cards: [
@@ -66,7 +66,6 @@ topics: [
   reveal: [
    'In the story, the soldiers say it in about December 1790. In the records, the belief is the Darug people’s and it follows the escapes of 1797, six years later.',
    'The records show he could be wounded. The belief that bullets could not harm him came from surviving. It does not say he could not be shot.',
-   'Later records on this question are held back until you lock in your finding on the “My finding” page. Teachers can open them under “Teacher answers (spoilers)” on this page.',
    'The wounds the book mentions are not dated. Some records, such as 1797, are known. Whether the book means those is not stated.'
   ],
   check: null, src: ['adbPem', 'dosPem']},

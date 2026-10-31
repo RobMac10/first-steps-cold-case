@@ -21,7 +21,8 @@ const wsum=s=>(s||'').trim().split(/\s+/).filter(Boolean).length;
 function figure(img){
  return '<figure><img src="'+esc(img.src)+'" alt="'+esc(img.alt)+'" loading="lazy"><figcaption>'+esc(img.cap)+'<span class="credit">'+esc(img.credit)+'</span></figcaption></figure>';
 }
-const spoilerBox=secs=>secs&&secs.length?'<details class="spoiler"><summary>Teacher answers (spoilers)</summary><div><p class="note"><strong>Spoilers.</strong> This section gives away how the stories end and who the Resistor was. Read the book first. It is closed until you open it.</p>'+secs.map(x=>'<h3>'+esc(x.h)+'</h3>'+P(x.p)+srcLinks(x.src)).join('')+'</div></details>':'';
+
+const MSG={board:'Once you lock it in, your finding is saved on this device.',spot:'Once you lock it in, your answer is saved on this device.',find:'Locking it in saves your finding on this device.'};
 const screens={};
 
 /* ---------- HOME ---------- */
@@ -34,8 +35,8 @@ screens.home=()=>{
  '<section class="care" aria-labelledby="carehd"><h2 id="carehd">Before you start</h2><p>'+esc(T.content)+'</p>'+P(T.care)+'<p><a href="#/about">Read the acknowledgement and credits</a></p></section>'+
  '<h2>How to use this app</h2><p>The app keeps spoilers back. Each witness file opens when you say you have finished that character’s story in the book. Nobody checks. It works best if you read first.</p><ol class="steps">'+T.readingPath.map(s=>'<li>'+esc(s[0])+'<small>'+esc(s[1])+'</small></li>').join('')+'</ol>'+
  '<div class="status" aria-label="Your progress"><span class="'+(nW==4?'done':'')+'">Witness files open: '+nW+' of 4</span><span class="'+(nI==5?'done':'')+'">Clues scored: '+nI+' of 5</span><span class="'+(nT==T.topics.length?'done':'')+'">Board questions locked in: '+nT+' of '+T.topics.length+'</span></div>'+
- '<h2>In the book, in the record, from the story</h2><p>Every card in this app keeps these apart.</p><p>'+badge('book')+'What the book says. It is not a record.</p><p>'+badge('real')+'Something in a public record, with the source named.</p><p>'+badge('made')+'Written for the story. This app found no record for it. The book says some dialogue and thoughts are imagined.</p><p>'+badge('check')+'The book and the records do not fit, or the app could not check.</p>'+
- '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/spot">Spot the Discrepancy</a></div><div class="grid c2"><a class="btn" href="#/records">Real records</a><a class="btn" href="#/class">Class mode</a></div>';
+ '<h2>'+'In the book and in the record'+'</h2><p>Every card in this app keeps these apart.</p><p>'+badge('book')+'What the book says. It is not a record.</p><p>'+badge('real')+'Something in a public record, with the source named.</p>'+
+ '<div class="grid c2"><a class="btn dark" href="#/witnesses/1">Open the witness files</a><a class="btn" href="#/spot">Spot the Discrepancy</a></div><div class="grid c2"><a class="btn" href="#/records">Real records</a><a class="btn" href="#/class">'+'Discuss and write'+'</a></div>';
 };
 
 /* ---------- WITNESSES ---------- */
@@ -55,9 +56,9 @@ screens.witnesses=(arg)=>{
  '<h2>What they said</h2>'+w.said.map(e=>'<div class="entry"><div class="tag">'+esc(e[0])+'</div><p>'+esc(e[1])+'</p></div>').join('')+
  '<h2>What the records show</h2>'+w.records.map(r=>'<div class="rec"><p>'+badge('real')+esc(r.t)+'</p>'+srcLinks(r.src)+'</div>').join('')+
  (w.image?figure(w.image):'')+
- '<h2>Not asked</h2><p>These are questions nobody put to the witness, or that the sources leave open.</p>'+w.notAsked.map(e=>'<div class="entry"><div class="tag">'+esc(e[0])+'</div><p>'+esc(e[1])+'</p></div>').join('')+
- '<h2>What is real, what is from the story</h2>'+panel('real','In a record',w.real)+panel('made','From the story',w.made)+
- spoilerBox(T.teacher.files[n])+'<div class="pager">'+(n>1?'<a class="btn" href="#/witnesses/'+(n-1)+'">&larr; File '+(n-1)+'</a>':'')+(n<4?'<a class="btn dark" href="#/witnesses/'+(n+1)+'">File '+(n+1)+' &rarr;</a>':'<a class="btn dark" href="#/clues">Go to the clues &rarr;</a>')+'</div>'+
+ '<h2>Not asked</h2><p>These are questions nobody put to the witness, or that the sources leave open.</p>'+w.notAsked.map(e=>'<div class="entry"><p>'+esc(e[0])+'</p></div>').join('')+
+ 
+ '<div class="pager">'+(n>1?'<a class="btn" href="#/witnesses/'+(n-1)+'">&larr; File '+(n-1)+'</a>':'')+(n<4?'<a class="btn dark" href="#/witnesses/'+(n+1)+'">File '+(n+1)+' &rarr;</a>':'<a class="btn dark" href="#/clues">Go to the clues &rarr;</a>')+'</div>'+
  (st.classAll?'':'<p style="margin-top:14px"><button class="btn small" data-relock="'+n+'">Hide this file again</button></p>');
  return h;
 };
@@ -80,10 +81,11 @@ screens.clues=(arg)=>{
  kinds.map(k=>{const cl=it.clues.filter(c=>c[1]==k);return cl.length?'<div class="kind">'+KIND[k]+'</div><ul class="cluelist">'+cl.map(c=>'<li><label><input type="checkbox" data-clue="'+c[0]+'"'+(s.clues[c[0]]?' checked':'')+'> <span>'+esc(c[2])+'</span></label></li>').join('')+'</ul>':''}).join('')+
  '<h2>Your evidence log</h2><fieldset><legend>How far do I trust this item? (1 = very low, 5 = very high)</legend><div class="scale">'+[1,2,3,4,5].map(n=>'<label><input type="radio" name="rel" value="'+n+'" data-ik="rel"'+(s.rel==n?' checked':'')+'> '+n+'</label>').join('')+'</div></fieldset>'+
  '<label for="why">Why? Whose view is it, and what is left out?</label><textarea id="why" data-ik="why">'+esc(s.why||'')+'</textarea>';
- if(s.rel&&wsum(s.why)>2){
-  h+='<section class="reveal" aria-labelledby="rv"><h2 id="rv">Check against the records</h2><p>'+badge('check')+esc(it.bias)+'</p><p>'+badge('real')+esc(it.check)+'</p>'+srcLinks(it.src)+'</section>';
+ 
+if(s.rel&&wsum(s.why)>2){
+  h+='<section class="reveal" aria-labelledby="rv"><h2 id="rv">Where to look</h2><p>Your score and reason are saved on this device. Use these sources to check this item yourself.</p>'+(it.src&&it.src.length?srcLinks(it.src):'<p>There is no single source for this item. Start with the Records page.</p>')+'</section>';
  }else{
-  h+='<p class="wc" id="rvhelp">Give a score and write a reason to see the notes on this item.</p>';
+  h+='<p class="wc" id="rvhelp">Give a score and write a reason to see where to look.</p>';
  }
  h+='<div class="pager">'+(i>0?'<a class="btn" href="#/clues/'+T.items[i-1].id+'">&larr; Item '+T.items[i-1].id+'</a>':'<a class="btn" href="#/clues">&larr; All clues</a>')+(i<T.items.length-1?'<a class="btn dark" href="#/clues/'+T.items[i+1].id+'">Item '+T.items[i+1].id+' &rarr;</a>':'<a class="btn dark" href="#/board">Go to the Board &rarr;</a>')+'</div>';
  return h;
@@ -116,16 +118,12 @@ screens.board=(arg)=>{
  '<h2>Step 3. Write your finding</h2><label for="note">In one or two sentences: how do the two statements differ, and what do you think that means? Use only what is in the book and the records.</label><textarea id="note" data-bk="note"'+(L?' disabled':'')+'>'+esc(b.note||'')+'</textarea>';
  if(!L){
   const ok=b.a&&b.b&&b.trust&&(b.note||'').trim().length>2;
-  h+='<p><button class="btn dark" id="lockbtn" data-lock="'+t.id+'"'+(ok?'':' disabled')+' aria-describedby="lockhelp">Lock in my finding</button></p><p id="lockhelp" class="wc">'+(ok?'Once you lock it in, you can read what the sources say.':'To lock in, pick a pair, choose whom you trust and write your finding.')+'</p>';
+  h+='<p><button class="btn dark" id="lockbtn" data-lock="'+t.id+'"'+(ok?'':' disabled')+' aria-describedby="lockhelp">Lock in my finding</button></p><p id="lockhelp" class="wc">'+(ok?MSG.board:'To lock in, pick a pair, choose whom you trust and write your finding.')+'</p>';
  }else{
-  const cd=id=>{const k=t.cards.find(y=>y[0]==id);return k?'“'+k[3]+'” ('+k[2]+')':''};
   h+='<div class="locked-note">Locked in. Your finding is saved on this device.</div>'+
-  '<section class="reveal" aria-labelledby="rv"><h2 id="rv">What the sources say</h2>'+
-  '<p><em>One pair that is worth noticing:</em></p><p>'+esc(cd(t.pair[0]))+'</p><p>'+esc(cd(t.pair[1]))+'</p>'+
-  (b.a&&b.b&&!(t.pair.includes(b.a)&&t.pair.includes(b.b))?'<p class="wc">You paired a different two. That is fine. Compare your pair with this one.</p>':'')+
-  P(t.reveal)+(t.check?'<p>'+badge('check')+esc(t.check)+'</p>':'')+srcLinks(t.src)+'</section>';
+  '<section class="reveal" aria-labelledby="rv"><h2 id="rv">Where to look</h2><p>Use these sources to check your finding yourself.</p>'+srcLinks(t.src)+'</section>';
  }
- h+=spoilerBox(T.teacher.topics[t.id]);
+ 
  h+='<div class="pager">'+(i>0?'<a class="btn" href="#/board/'+T.topics[i-1].id+'">&larr; Previous</a>':'<a class="btn" href="#/board">&larr; All questions</a>')+(i<T.topics.length-1?'<a class="btn dark" href="#/board/'+T.topics[i+1].id+'">Next question &rarr;</a>':'<a class="btn dark" href="#/board/finding">My finding &rarr;</a>')+'</div>';
  return h;
 };
@@ -138,32 +136,33 @@ function findingScreen(){
  '<fieldset><legend>How sure am I?</legend><div class="opts">'+T.sureOptions.map(o=>'<label><input type="radio" name="sure" value="'+esc(o)+'" data-fk="sure"'+(f.sure==o?' checked':'')+(L?' disabled':'')+'> '+esc(o)+'</label>').join('')+'</div></fieldset>';
  if(!L){
   const ok=f.status&&(f.what||'').trim().length>2&&f.sure;
-  h+='<p><button class="btn dark" id="lockfind"'+(ok?'':' disabled')+' aria-describedby="fhelp">Lock in my finding</button></p><p id="fhelp" class="wc">'+(ok?'Locking it in shows what the records can and cannot tell us.':'To lock in, choose the case status and how sure you are, and write what you think happened.')+'</p>';
+  h+='<p><button class="btn dark" id="lockfind"'+(ok?'':' disabled')+' aria-describedby="fhelp">Lock in my finding</button></p><p id="fhelp" class="wc">'+(ok?MSG.find:'To lock in, choose the case status and how sure you are, and write what you think happened.')+'</p>';
  }else{
-  h+='<div class="locked-note">Locked in. Your finding is saved on this device.</div><section class="reveal" aria-labelledby="rv1"><h2 id="rv1">What the records can and cannot tell us</h2>'+P(T.findingReveal)+srcLinks(['tench','nmaPem','adbPem','dosPem'])+'</section><p><button class="btn small" data-unlockfind="1">Unlock my finding to edit it</button></p>';
+  h+='<div class="locked-note">Locked in. Your finding is saved on this device.</div><section class="reveal" aria-labelledby="rv1"><h2 id="rv1">Sources to read</h2><p>Your finding is saved. You can print it. Check it against these sources.</p>'+srcLinks(['tench','nmaPem','adbPem','dosPem'])+'</section><p><button class="btn small" data-unlockfind="1">Unlock my finding to edit it</button></p>';
  }
+ 
  h+='<p><button class="btn dark" id="printbtn">Print or save my work</button></p>';
  return h;
 }
 
 /* ---------- RECORDS ---------- */
 screens.records=()=>{
- const used=Object.keys(T.S).filter(k=>k!='flip'&&!T.teacher.teacherOnlySrc.includes(k));
+ const used=Object.keys(T.S).filter(k=>k!='flip');
  return '<h1>Real records</h1><p class="lead">The public sources behind the “In the record” cards, and starting points for the archive hunt.</p>'+
  '<p class="note">'+badge('check')+'The pages linked here name the people in the records. If you want to work out who the Resistor is first, write your first idea on the Clues page before you open them.</p>'+'<h2>Archive hunt: starting points</h2><p>'+esc(T.huntNote)+'</p>'+
  '<div class="entry">'+T.hunt.map(h=>{const s=T.S[h[2]];return '<div class="rec"><p><strong>'+esc(h[0])+'</strong><br>'+esc(h[1])+'</p><p class="srcs"><a href="'+esc(s[1])+'" target="_blank" rel="noopener noreferrer">Open the source (opens in a new tab)</a></p></div>'}).join('')+'</div>'+
  '<h2>All sources used in this app</h2><ul class="placelist">'+used.map(k=>'<li><a href="'+esc(T.S[k][1])+'" target="_blank" rel="noopener noreferrer">'+esc(T.S[k][0])+' (opens in a new tab)</a></li>').join('')+'</ul>'+
  '<h2>Read next</h2>'+P(T.readNext)+
- '<p class="note">'+badge('check')+'Some sites were read in full for this app, and some were read through search summaries. Open each link and check the wording yourself before you quote it. The About page lists what still needs checking.</p>';
+ '<p class="note">'+badge('check')+'Some sites were read in full for this app, and some were read through search summaries. Open each link and check the wording yourself before you quote it. '+'</p>';
 };
 
 /* ---------- CLASS ---------- */
 screens.class=()=>{
  const wr=T.writing,w=st.write;
  const wcount=wr.fields.map(f=>wsum(w[f[0]])).reduce((a,b)=>a+b,0);
- return '<h1>Class mode</h1>'+P([T.classIntro])+
- '<details><summary>Notes for teachers</summary><div><ul>'+T.teacherNotes.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p>Teacher tools:</p><p><button class="btn small" data-classall="1">'+(st.classAll?'All files are unlocked on this device. Tap to lock again':'Unlock everything on this device')+'</button></p></div></details>'+
- '<h2>Teacher answers</h2><p>Plot endings, the Resistor’s identity and the records that are held back from students are in a closed box. Open it only if you need it.</p>'+spoilerBox(T.teacher.all)+'<h2>Activity: '+esc(T.spot.title)+'</h2><p>Students find four places where the book and the records do not agree, choose a reason for each and write why. It shows how historians compare sources.</p><p><a class="btn dark" href="#/spot">Open the activity</a></p>'+spotTeacher()+'<h3>Questions for the whole class</h3><ol class="q">'+T.spot.prompts.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol>'+
+ return '<h1>'+'Discuss and write'+'</h1>'+P([T.classIntro])+
+ 
+ '<h2>Activity: '+esc(T.spot.title)+'</h2><p>Students find four places where the book and the records do not agree, choose a reason for each and write why. It shows how historians compare sources.</p><p><a class="btn dark" href="#/spot">Open the activity</a></p>'+'<h3>Questions for the whole class</h3><ol class="q">'+T.spot.prompts.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol>'+
  '<h2>Discussion questions</h2><p>Each group matches a part of the book. Use the group after you reach that part.</p>'+
  T.questions.map((g,i)=>'<details'+(i==0?' open':'')+'><summary>'+esc(g.h)+'</summary><div><ol class="q">'+g.q.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ol></div></details>').join('')+
  '<h2>'+esc(wr.title)+'</h2><p class="wc">'+esc(wr.time)+'</p><ol class="q">'+wr.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol><p><strong>Sentence starters:</strong> '+wr.starters.map(esc).join(' &nbsp;·&nbsp; ')+'</p>'+
@@ -181,9 +180,6 @@ const spotDone=id=>!!(st.spot[id]&&st.spot[id].locked);
 function spotSide(x){
  return '<section class="panel '+(x.kind=='book'?'book':'real')+'" aria-label="'+esc(BADGE[x.kind][1]+': '+x.who)+'"><h3>'+badge(x.kind)+esc(x.who)+'</h3>'+x.t.map(q=>'<blockquote><p style="margin:0">'+esc(q)+'</p></blockquote>').join('')+srcLinks(x.src)+'</section>';
 }
-function spotTeacher(){
- return '<details><summary>Teacher note: how historians compare sources</summary><div><ul>'+SPOT().teacher.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></details>';
-}
 screens.spot=(arg)=>{
  const S=SPOT(),c=S.cases.find(x=>x.id==arg);
  if(!c){
@@ -192,7 +188,7 @@ screens.spot=(arg)=>{
   '<h2>How it works</h2><ol class="steps">'+S.how.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol><p class="note">'+esc(S.note)+'</p>'+
   '<div class="status"><span class="'+(n==S.cases.length?'done':'')+'">Cases locked in: '+n+' of '+S.cases.length+'</span></div>'+
   '<ol class="q" style="list-style:none;padding:0">'+S.cases.map((x,i)=>{const s=st.spot[x.id]||{};const ok=unlocked(x.gate);const t=!ok?'Locked':(s.locked?'Locked in':(s.pick?'Started':'Not started'));return '<li><a class="btn casecard" href="#/spot/'+x.id+'"><span>'+(i+1)+'. '+esc(x.title)+'</span><span class="wc">'+t+'</span></a></li>'}).join('')+'</ol>'+
-  '<h2>For teachers</h2>'+spotTeacher();
+  '';
  }
  const i=S.cases.indexOf(c);
  if(!unlocked(c.gate)){
@@ -208,18 +204,13 @@ screens.spot=(arg)=>{
  '<h2>Step 3. Write why</h2><label for="spotwhy">In one or two sentences: what in the two sides makes you pick this reason? Use only what is on the page.</label><textarea id="spotwhy" data-sk="why"'+(L?' disabled':'')+'>'+esc(s.why||'')+'</textarea>';
  if(!L){
   const ok=spotReady(s);
-  h+='<p><button class="btn dark" id="spotlock" data-spotlock="'+c.id+'"'+(ok?'':' disabled')+' aria-describedby="spothelp">Lock in my answer</button></p><p id="spothelp" class="wc">'+(ok?'Once you lock it in, you can see what the evidence shows.':'To lock in, choose a reason and write at least three words about why.')+'</p>';
+  h+='<p><button class="btn dark" id="spotlock" data-spotlock="'+c.id+'"'+(ok?'':' disabled')+' aria-describedby="spothelp">Lock in my answer</button></p><p id="spothelp" class="wc">'+(ok?MSG.spot:'To lock in, choose a reason and write at least three words about why.')+'</p>';
  }else{
-  const fits=c.lean.includes(s.pick);
   h+='<div class="locked-note">Locked in. Your answer is saved on this device.</div>'+
-  '<section class="reveal" aria-labelledby="rvs"><h2 id="rvs">What the evidence shows</h2>'+
   '<p><strong>You chose:</strong> '+esc(reasonText(s.pick))+'.</p>'+
-  '<p>'+(fits?'This is one of the reasons the evidence points to.':'This is not the reason the evidence points to most strongly. You may still be able to back it up, so look again at the quotes and your own sentences.')+'</p>'+
-  '<p><strong>The reasons the evidence points to:</strong> '+c.lean.map(x=>esc(reasonText(x))).join('; ')+'.</p>'+
-  P(c.reveal)+'<p>'+badge('check')+'<strong>Still open.</strong> '+esc(c.open)+'</p>'+srcLinks(c.src)+'</section>'+
   '<p><button class="btn small" data-spotunlock="'+c.id+'">Unlock my answer to change it</button></p>';
  }
- h+=spotTeacher();
+ 
  h+='<div class="pager">'+(i>0?'<a class="btn" href="#/spot/'+S.cases[i-1].id+'">&larr; Previous</a>':'<a class="btn" href="#/spot">&larr; All cases</a>')+(i<S.cases.length-1?'<a class="btn dark" href="#/spot/'+S.cases[i+1].id+'">Next case &rarr;</a>':'<a class="btn dark" href="#/class">Class mode &rarr;</a>')+'</div>';
  return h;
 };
@@ -229,11 +220,11 @@ screens.about=()=>
  '<h1>About</h1><p class="lead">'+esc(T.about)+' <a href="'+esc(T.flipbook)+'" target="_blank" rel="noopener noreferrer">First Steps on Ancient Ground (opens in a new tab)</a>.</p>'+
  '<section class="care" aria-labelledby="c1"><h2 id="c1">Cultural care</h2>'+P(T.care)+'<p>'+esc(T.content)+'</p></section>'+
  '<h2>Acknowledgement</h2>'+P(T.ack)+
- '<h2>In the book, in the record, from the story</h2><p>The book is historical fiction. Its front pages say some dialogue and personal thoughts “have been imagined”. This app keeps three things apart: what the book says, what public records say, and what was written for the story. Where this app could not find a record for something in the story, it says so. It does not say the thing did not happen.</p>'+
+ '<h2>'+'In the book and in the record'+'</h2><p>The book is historical fiction. Its front pages say some dialogue and personal thoughts “have been imagined”. '+'This app keeps two things apart: what the book says and what public records say.'+'</p>'+
  '<h2>Text and pictures</h2><p>Quotes from the book are by Robin McKean and are shown here to go with the book. Records are quoted briefly and linked. All pictures are public domain and credited. None is made by artificial intelligence. The app does not reuse the book’s plates, because they are labelled reconstructions.</p><ul>'+T.credits.map(c=>'<li><strong>'+esc(c[0])+'.</strong> '+esc(c[1])+'</li>').join('')+'</ul>'+
- '<h2>Still being checked</h2>'+panel('check','Open questions for the author',T.openChecks)+
+ 
  '<h2>Privacy</h2><p>This app has no accounts, no tracking, no cookies and no adverts. Your answers are saved only in this browser on this device. Nothing is sent anywhere. Printing is how you share your work. Tap “Clear my answers” at the bottom of any page to delete everything.</p>'+
- '<p><a href="https://github.com/RobMac10/first-steps-cold-case" target="_blank" rel="noopener noreferrer">Source files on GitHub (opens in a new tab)</a></p>';
+ +'';
 
 /* ---------- PRINT ---------- */
 function buildPrint(){
@@ -250,8 +241,8 @@ function buildPrint(){
 }
 
 /* ---------- ROUTER ---------- */
-const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['spot','Discrepancies'],['records','Records'],['class','Class'],['about','About']];
-const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',spot:'Spot the Discrepancy',records:'Real records',class:'Class mode',about:'About'};
+const NAV=[['home','Case file'],['witnesses','Witnesses'],['clues','Clues'],['board','Board'],['spot','Discrepancies'],['records','Records'],['class','Discuss'],['about','About']];
+const TITLES={home:'Case file',witnesses:'Witness files',clues:'Clues',board:'The board',spot:'Spot the Discrepancy',records:'Real records',class:'Discuss and write',about:'About'};
 const main=document.getElementById('main'),nav=document.getElementById('nav');
 let first=true;
 function draw(){
@@ -285,7 +276,7 @@ document.addEventListener('click',e=>{
  else if(b.dataset.unlockfind){delete st.finding.locked;save();rerender('h1');}
  else if(b.dataset.spotlock){const x=spotOf(b.dataset.spotlock);if(spotReady(x)){x.locked=Date.now();save();rerender('#rvs');const r=document.getElementById('rvs');if(r){r.setAttribute('tabindex','-1');r.focus();}}}
  else if(b.dataset.spotunlock){delete spotOf(b.dataset.spotunlock).locked;save();rerender('h1');}
- else if(b.dataset.classall){st.classAll=!st.classAll;save();rerender();}
+ 
  else if(b.id=='printbtn'){buildPrint();window.print();}
  else if(b.id=='clear'){if(confirm('Clear all your answers and unlocks from this browser?')){localStorage.removeItem(KEY);st={};fresh();route();}}
 });
@@ -298,10 +289,10 @@ document.addEventListener('change',e=>{
 document.addEventListener('input',e=>{
  const d=e.target.dataset||{};
  if(d.bk){const t=location.hash.split('/')[2];const bd=board(t);bd[d.bk]=e.target.value;save();
-  if(d.bk=='trust'||d.bk=='note'){const btn=document.getElementById('lockbtn');if(btn){const ok=bd.a&&bd.b&&bd.trust&&(bd.note||'').trim().length>2;btn.disabled=!ok;document.getElementById('lockhelp').textContent=ok?'Once you lock it in, you can read what the sources say.':'To lock in, pick a pair, choose whom you trust and write your finding.';}}}
- else if(d.fk){st.finding[d.fk]=e.target.value;save();const btn=document.getElementById('lockfind');if(btn){const f=st.finding;const ok=f.status&&(f.what||'').trim().length>2&&f.sure;btn.disabled=!ok;document.getElementById('fhelp').textContent=ok?'Locking it in shows what the records can and cannot tell us.':'To lock in, choose the case status and how sure you are, and write what you think happened.';}}
+  if(d.bk=='trust'||d.bk=='note'){const btn=document.getElementById('lockbtn');if(btn){const ok=bd.a&&bd.b&&bd.trust&&(bd.note||'').trim().length>2;btn.disabled=!ok;document.getElementById('lockhelp').textContent=ok?MSG.board:'To lock in, pick a pair, choose whom you trust and write your finding.';}}}
+ else if(d.fk){st.finding[d.fk]=e.target.value;save();const btn=document.getElementById('lockfind');if(btn){const f=st.finding;const ok=f.status&&(f.what||'').trim().length>2&&f.sure;btn.disabled=!ok;document.getElementById('fhelp').textContent=ok?MSG.find:'To lock in, choose the case status and how sure you are, and write what you think happened.';}}
  else if(d.wk){st.write[d.wk]=e.target.value;save();document.getElementById('wcount').textContent='Words so far: '+['claim','record','agree','missing'].map(k=>wsum(st.write[k])).reduce((a,b)=>a+b,0);}
- else if(d.sk=='why'){const x=spotOf(location.hash.split('/')[2]);x.why=e.target.value;save();const btn=document.getElementById('spotlock');if(btn){const ok=spotReady(x);btn.disabled=!ok;document.getElementById('spothelp').textContent=ok?'Once you lock it in, you can see what the evidence shows.':'To lock in, choose a reason and write at least three words about why.';}}
+ else if(d.sk=='why'){const x=spotOf(location.hash.split('/')[2]);x.why=e.target.value;save();const btn=document.getElementById('spotlock');if(btn){const ok=spotReady(x);btn.disabled=!ok;document.getElementById('spothelp').textContent=ok?MSG.spot:'To lock in, choose a reason and write at least three words about why.';}}
  else if(d.hyp){st.hyp=e.target.value;save();}
  else if(d.ik=='why'){const s=item(location.hash.split('/')[2]);const had=s.rel&&wsum(s.why)>2;s.why=e.target.value;save();const now=s.rel&&wsum(s.why)>2;if(now&&!had){const pos=e.target.selectionStart;rerender('#why');const t=document.getElementById('why');if(t&&pos!=null){try{t.setSelectionRange(pos,pos)}catch(x){}}}}
 });

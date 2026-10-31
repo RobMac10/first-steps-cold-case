@@ -3,28 +3,24 @@
 A free, static companion app for Robin McKean's book *First Steps on Ancient Ground*
 (https://heyzine.com/flip-book/d73a2fe642.html).
 
-It has a case file, four witness files, clues from the book's Detective Hunt Log Book,
-a board that compares statements, a finding page, and a "Spot the Discrepancy" activity (four places where the book and the records disagree, with a reason picker and a teacher note).
+Two versions are built from one source:
 
-- Plain HTML, CSS and JavaScript. No build step. No tracking. No cookies.
-- Answers are saved only in the reader's own browser (`localStorage`, key `first-steps-cold-case-v1`).
-- Every item is labelled: Record, In the book, From the story, or Still being checked.
+- **Student version** (site root, https://robmac10.github.io/first-steps-cold-case/): case file, four witness files, Log Book clues, a board that sets statements from the book beside statements from records, Spot the Discrepancy, a finding page, and a discussion and writing page. It has no answers, no teacher notes and no plot endings in its files. Students' locked-in answers are saved in their own browser and can be printed.
+- **Teacher version** (`/teacher/`, https://robmac10.github.io/first-steps-cold-case/teacher/): the same app plus Class mode, teacher notes, and every answer and spoiler behind a closed "Show answers" toggle. It links to the student version. The student version does not link to it. It is not password protected, so treat the address as unlisted, not secret.
+
+- Plain HTML, CSS and JavaScript. No tracking. No cookies.
+- Answers are saved only in the reader's own browser (`localStorage`; the two versions use different keys).
 - Pictures are public domain and credited. No AI images.
 
-## Files
-- `index.html`, `styles.css`, `app.js`: the app.
-- `data1.js`: case file, sources, witness files.
-- `data2.js`: board questions.
-- `data3.js`: Log Book items, clues, class questions, credits, open checks, finding, and the teacher-only answers.
-- `data4.js`: the Spot the Discrepancy activity.
-- `images/`: credited public-domain images.
-- `archive/`: material removed from the app, kept so nothing is lost. It is not linked from the app. It holds the old timeline data and code, the Fowkes sketch, and copies of the files as they were before the spoiler redaction (git tag `pre-spoiler-redact`). It contains spoilers.
+## Source and build
+Edit only `src/`, then run `node build.js`. It writes the student files at the site root (`index.html`, `app.js`, `data.js`, `styles.css`) and the teacher files in `teacher/`. Commit the generated files too, because GitHub Pages serves them as they are.
 
-## Spoilers
-The app keeps how the stories end, and who the Resistor was, out of the student pages. Teachers can open a closed box headed "Teacher answers (spoilers)" on the witness files, the "Could he be shot?" board question and Class mode.
+- `src/data1.js` to `src/data4.js`: all text and answers (case file, witnesses, board, clues, Spot the Discrepancy, class questions, teacher answers).
+- `src/app.js`, `src/index.html`, `src/styles.css`: the app.
+- Markers: `{{T:text}}` is teacher-only text. `{{S:text}}` is student-only text. In `app.js`, blocks between `/*T*/` and `/*/T*/` are teacher-only, and `/*S*/` ... `/*/S*/` are student-only. In `index.html`, `<!--T-->` ... `<!--/T-->` is teacher-only.
+- For the student version `build.js` also deletes these data fields: `teacher`, `openChecks`, `findingReveal`, `teacherNotes`, each board topic's `pair`, `reveal` and `check`, each clue item's `bias` and `check`, each witness's `real` and `made` (and the answers to "Not asked"), and each Spot case's `reveal`, `lean`, `open`, `status`.
+- `images/`: credited public-domain images. `build.js` copies them into `teacher/images/`.
+- `archive/`: material removed from the app, kept so nothing is lost. It is not linked from the app. It contains spoilers. See `archive/README.md`.
 
 ## Run locally
-`python3 -m http.server` in this folder, then open http://localhost:8000/
-
-## Open checks
-The "Still being checked" list in the app (About page) shows what Robin still needs to confirm, including cultural checks.
+`node build.js && python3 -m http.server` in this folder, then open http://localhost:8000/ and http://localhost:8000/teacher/

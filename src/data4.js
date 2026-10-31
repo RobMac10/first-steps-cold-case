@@ -3,13 +3,13 @@ window.FS.spot = {
  title: 'Spot the Discrepancy',
  intro: [
   'A detective does not only collect clues. A detective also notices when two accounts do not agree, and then works out why.',
-  'This activity has four places where the book and the records do not fit, or where two records do not fit. For each one, read both sides, choose the reason you think is most likely, and write why. Then lock in your answer to see what the evidence shows.'
+  'This activity has four places where the book and the records do not fit, or where two records do not fit. For each one, read both sides, choose the reason you think is most likely, and write why. {{T:Then lock in your answer to see what the evidence shows.}}{{S:Then lock in your answer. It is saved on this device and you can print it.}}'
  ],
  how: [
   'Read both sides of the case. Each side names its source.',
   'Pick the reason you think is most likely.',
   'Write one or two sentences that use the quotes to back up your reason.',
-  'Lock in your answer. The app then shows what the evidence points to, and what is still open.'
+  '{{T:Lock in your answer. The app then shows what the evidence points to, and what is still open.}}{{S:Lock in your answer. It is saved on this device and you can print it.}}'
  ],
  note: 'There may be more than one good reason, and some cases cannot be settled. If the evidence is not enough, “I cannot tell yet” is a proper finding. Use only what is on the page.',
  reasons: [
@@ -72,7 +72,7 @@ window.FS.spot = {
     t: ['“You, your wife Mary Ann Pragnell, and your teenage son Robert boarded the barque Andromache and sailed for 113 days…”'],
     src: ['flip']},
    b: {kind: 'real', who: 'Shipping list (transcription of the Victorian shipping lists)',
-    t: ['The Andromache “sailed 28-2-1840 from London for a 113 day passage” and “arrived Melbourne 24-6-1840”.', 'Counting the days from 28 February to 24 June 1840 gives 117. The year 1840 had 29 days in February, and that is included.'],
+    t: ['The Andromache “sailed 28-2-1840 from London for a 113 day passage” and “arrived Melbourne 24-6-1840”.', '{{T:Counting the days from 28 February to 24 June 1840 gives 117. The year 1840 had 29 days in February, and that is included.}}'],
     src: ['andro']},
    clues: ['Does the book’s number match the list’s number?', 'Count from 28 February to 24 June 1840. Do you get 113?', 'The list says the ship collected passengers at Plymouth. Does it say what day she left Plymouth?'],
    lean: ['copy', 'wrong'],
@@ -91,7 +91,7 @@ window.FS.spot = {
    b: {kind: 'real', who: 'HMS Sirius (1786), citing the journals of John Hunter and William Bradley',
     t: ['“On 19 March 1790, Sirius was wrecked on a reef at Norfolk Island while landing stores.”'],
     src: ['sirius']},
-   book: 'The book (Freeman, p. 26) says only “Earlier this year, the Sirius was wrecked near Norfolk Island.” It gives no date, so it fits either one.',
+   book: 'The book (Freeman, p. 26) says only “Earlier this year, the Sirius was wrecked near Norfolk Island.” {{T: It gives no date, so it fits either one.}}',
    clues: ['Which account was written by someone who was on the island? Which was written by someone who heard the news in Sydney?', 'Tench says the Sirius sailed on 6 March. Could she be wrecked on 19 February?', 'The app has used a printed text of Tench. Could the printed text differ from what he wrote?'],
    lean: ['slip', 'copy', 'sources'],
    reveal: [

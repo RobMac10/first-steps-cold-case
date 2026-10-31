@@ -51,7 +51,7 @@ caseFile: [
 summary: [
  'First Steps on Ancient Ground is a pick-a-path story. You choose one of three characters: a resistance warrior called the Resistor, a clerk named Thomas Freeman in the starving colony of 1790, or a farm worker named Thomas Curtis who arrives in 1840. At the back, the Detective Hunt Log Book gives five damaged records and asks one question: who is the Resistor, and what do the records say?',
  'This app is a companion to that question. Each character has a witness file with four parts: what the book says about them, what they said, what public records show, and what nobody asked. The clue pages let you work through the five fragments. The board sets statements from the book next to statements from the records, so you can see where they match and where they do not. At the end you write your own finding.',
- 'The book does not give one answer, and neither does this app. It tells you what is in the book, what is in the records, and what was written for the story. You decide what the evidence supports.'
+ 'The book does not give one answer, and neither does this app. It tells you what is in the book and what is in the records{{T:, and what was written for the story}}. You decide what the evidence supports.'
 ],
 readingPath: [
  ['Read the opening pages and choose a character.', 'Open the book from the link below. Read the introduction and “Choose your character”.'],
@@ -86,7 +86,7 @@ witnesses: [
   said: [
    ['Page 11 (Scout the Farm)', '“Fire can be a weapon or a way to stay hidden. Tonight, we may need both.” He whispers this to the warrior beside him. It is the only sentence the book gives him.'],
    ['Pages 7 to 18', 'He mostly acts, and the book gives him almost no words. What he does depends on your choices.'],
-   ['The path ends', 'The book gives him nine path ends. They are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
+   ['The path ends', '{{T:The book gives him nine path ends. They are listed in the answers below.}}']
   ],
   records: [
    {t: 'Watkin Tench wrote that on the night of 9 to 10 December 1790 a sergeant of marines and three convicts went on a shooting party near Botany Bay. One of them was McEntire (also spelled McIntyre), the Governor’s gamekeeper. Tench says a young man “with a speck or blemish on his left eye” threw a spear and wounded him in the left side. Tench also wrote that Colbee and other men from the area gave the name of the man who did it and said he lived at Botany Bay. Tench’s own word for him was “murderer”, which shows whose side the writer was on.', src: ['tench']},
@@ -94,7 +94,6 @@ witnesses: [
    {t: 'The Australian Dictionary of Biography says that from 1792 this Bidjigal leader led raids at Prospect, Toongabbie, the Georges River, Parramatta, Brickfield Hill and the Hawkesbury River. It says the raids were made for food, “particularly corn”, or as payback for atrocities. David Collins, who was in the colony, suggested most of the attacks followed the settlers’ “own misconduct”, including the kidnapping of Aboriginal children. The National Museum says the first raid was at Prospect in May 1792.', src: ['adbPem', 'nmaPem']},
    {t: 'In March 1797 he led a raid on the government farm at Toongabbie. Settlers and soldiers followed his group to Parramatta. He was wounded by seven pieces of buckshot, was taken to hospital, and escaped with an iron on his leg. By late April 1797 he was seen near Botany Bay, recovered.', src: ['adbPem', 'dosPem']},
    {t: 'After those escapes the Darug believed that firearms could not kill him.', src: ['adbPem']},
-   {t: 'The records from 1798 onwards, the name of the man in the records and what became of him are held back until you lock in your finding on the “My finding” page. Teachers can open them under “Teacher answers (spoilers)” below.', src: []},
    {t: 'The book’s reading list names a National Museum page and a 1987 novel by Eric Willmot about the same leader. The Dictionary of Sydney calls Willmot’s book “a brilliant work of fiction”, so it is a novel built on records and not a record itself.', src: ['dosPem']}
   ],
   notAsked: [
@@ -138,15 +137,14 @@ witnesses: [
   ],
   said: [
    ['Page 26 (thinking)', '“What if the Resistor is not the savage the officers say he is, but just a man trying to protect his people and his Country?”'],
-   ['After page 26', 'What Freeman says and what is said to him depends on your choices. The lines from the paths are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
+   ['After page 26', 'What Freeman says and what is said to him depends on your choices.{{T: The lines from the paths are listed in the answers below.}}']
   ],
   records: [
-   {t: 'HMS Sirius was the flagship of the First Fleet. She was wrecked on a reef at Norfolk Island on 19 March 1790 while landing stores. Her crew were stranded until 21 February 1791. Tench’s printed text gives the date of the wreck as “the 19th of February”, so the date needs checking in the original. The ship carried ten guns and was rated “nominally” as a sixth-rate.', src: ['sirius', 'tench']},
+   {t: 'HMS Sirius was the flagship of the First Fleet. She was wrecked on a reef at Norfolk Island on 19 March 1790 while landing stores. Her crew were stranded until 21 February 1791. {{T:Tench’s printed text gives the date of the wreck as “the 19th of February”, so the date needs checking in the original.}} The ship carried ten guns and was rated “nominally” as a sixth-rate.', src: ['sirius', 'tench']},
    {t: 'On 27 March 1790 the colony’s order cut the weekly ration from 1 April to 4 lb of flour, 2½ lb of salt pork and 1½ lb of rice for everyone. After the news of the wreck, a smaller ration began on 12 April: 2½ lb of flour, 2 lb of pork and 2 lb of rice (or a quart of peas) a week. Gamekeepers and fishermen got a small extra issue.', src: ['tench', 'rations']},
    {t: 'About the flour, Tench wrote that it was “the remnant of what was brought from the Cape, by the Sirius, and was good”, and that soldiers and convicts boiled it up with greens.', src: ['tench']},
    {t: 'On 9 to 10 December 1790 the gamekeeper was speared. Governor Phillip ordered an expedition. Tench asked him to change the plan from killing ten men to capturing six. The order as Tench printed it was to bring in six men who lived near the head of Botany Bay or, if that could not be done, to put six to death. The party carried ropes, and hatchets and bags to carry the heads of anyone killed.', src: ['tench']},
    {t: 'Tench listed his party on the first march, on 14 December 1790: himself, a captain, two lieutenants, two surgeons, three sergeants, three corporals and forty private soldiers. No clerk is named. He wrote that on the first day they walked until four o’clock “without seeing a native”. On the second day they saw five men on a beach, who ran off, found empty huts with only fish spears, and met Colbee, who told them the man they wanted had gone south. A second march on 22 December found the huts empty, and Tench called it a “fruitless peregrination”.', src: ['tench']},
-   {t: 'A record about a person named in one of Freeman’s paths is held back so it does not spoil the story. Teachers can open it under “Teacher answers (spoilers)” below.', src: []}
   ],
   notAsked: [
    ['Was a clerk ever sent on the march?', 'Tench lists his party by rank. A commissary clerk is not among them, so the story’s march is an addition and not a record.'],
@@ -157,7 +155,7 @@ witnesses: [
   real: [
    'The Sirius, her wreck at Norfolk Island, the cut ration and Captain Watkin Tench.',
    'The spearing of the Governor’s gamekeeper in December 1790 and the marches that followed.',
-   'Other people and events named in Freeman’s paths (see “Teacher answers (spoilers)”).'
+   'Other people and events named in Freeman’s paths (see the answers on this page).'
   ],
   made: [
    'Thomas Freeman himself, as far as this app has checked.',
@@ -189,7 +187,7 @@ witnesses: [
    'They settled near the Cooks River, south of Sydney. The book says drought came and by 1842 the river had shrunk to muddy pools. One evening he and Robert go west to look for better land and are lost, and a Gadigal man guides them back.'
   ],
   said: [
-   ['Pages 46 to 49', 'The book gives Curtis no spoken words. What he does depends on your choices. The paths and their ends are not listed here so they do not spoil the story. Teachers can find them under “Teacher answers (spoilers)” below.']
+   ['Pages 46 to 49', 'The book gives Curtis no spoken words. What he does depends on your choices.{{T: The paths and their ends are listed in the answers below.}}']
   ],
   records: [
    {t: 'A transcription of the Victorian shipping lists says the 468-ton barque Andromache, Captain Thomas New, sailed from London on 28 February 1840 on a “113 day passage” and arrived at Port Phillip on 24 June 1840 with assisted immigrants under Surgeon-Superintendent Dr George Harvey. Eleven people went on to Sydney, leaving Port Phillip on 29 July and arriving on 2 August 1840. The page lists them as a “Curtis family of 4: Thomas 37 with Mary Ann 29, Robert 16 and Margaret 18”. It cites the Sydney Gazette of 4 August 1840 for the passengers.', src: ['andro']},
@@ -235,7 +233,7 @@ witnesses: [
   ],
   said: [
    ['Page 45', 'Nothing in words. He shows the way back by pointing.'],
-   ['Pages 46 to 49', 'What Warra does next depends on your choices. It is not listed here so it does not spoil the story. Teachers can find it under “Teacher answers (spoilers)” below.']
+   ['Pages 46 to 49', 'What Warra does next depends on your choices.{{T: It is listed in the answers below.}}']
   ],
   records: [
    {t: 'No source used for this app names a man called Warra. The book says he wants to be known by that name, and this app treats him as a story character.', src: []},

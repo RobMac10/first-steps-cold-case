@@ -7,3 +7,4 @@ Removed on 31 October 2026 so nothing is lost. Contains spoilers.
 - `fowkes-1788.jpg`: the timeline's public-domain picture (Francis Fowkes, attributed).
 - `pre-spoiler-redact/`: the app files exactly as they were before the spoiler redaction.
 - Git tag `pre-spoiler-redact` points to the commit before these changes.
+- `pre-spoiler-redact/` holds the single-version files (`data1.js` to `data4.js`, `app.js`, and so on) as they were before the student and teacher split. The timeline code and data are also in `removed-timeline-*`.
