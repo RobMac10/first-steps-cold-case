@@ -26,3 +26,13 @@ Edit only `src/`, then run `node build.js`. It writes the student files at the s
 
 ## Run locally
 `node build.js && python3 -m http.server` in this folder, then open http://localhost:8000/ and http://localhost:8000/teacher/
+
+## Printable worksheet
+
+`worksheet.html` (student, no answers) and `teacher/worksheet.html` (teacher copy with notes and answers) are built by `node build.js` from the same data as the app: `classIntro`, `questions`, `spot.prompts` and `writing` in `src/data3.js`. The generator is `worksheet-build.js`, and the print styles are in `src/worksheet.css` (A4).
+
+The PDF and Word downloads are made with `python3 tools/make-worksheet-files.py` after `node build.js` (needs python-docx and weasyprint):
+- `walking-worksheet-student.pdf` and `.docx` (site root, no answers)
+- `teacher/walking-worksheet-teacher.pdf` and `.docx` (teacher copy)
+
+Questions that ask a student to judge or trust something get a "How sure am I? 1 to 5" scale. The list is `SURE` in `worksheet-build.js`.

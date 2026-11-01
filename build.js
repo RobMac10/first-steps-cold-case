@@ -7,6 +7,7 @@
 //   index.html: T comment markers around teacher-only blocks.
 const fs = require('fs'), path = require('path');
 const root = __dirname, src = path.join(root, 'src');
+const WS = require('./worksheet-build.js');
 global.window = {};
 for (const f of ['data1', 'data2', 'data3', 'data4']) require(path.join(src, f + '.js'));
 const FS = JSON.parse(JSON.stringify(window.FS));
@@ -54,6 +55,11 @@ function htmlMode(s, mode) {
   s = s.replace(new RegExp('<!--' + other + '-->[\\s\\S]*?<!--/' + other + '-->', 'g'), '');
   return s.replace(/<!--\/?[TS]-->/g, '');
 }
+function dataFor(mode) {
+  let T = walk(FS, mode);
+  if (mode === 'student') T = studentFilter(T);
+  return T;
+}
 function out(dir, mode) {
   fs.mkdirSync(dir, { recursive: true });
   let T = walk(FS, mode);
@@ -64,9 +70,18 @@ function out(dir, mode) {
   if (mode === 'teacher') h = h.replace('<meta name="theme-color"', '<meta name="robots" content="noindex">\n<meta name="theme-color"');
   fs.writeFileSync(path.join(dir, 'index.html'), h);
   fs.copyFileSync(path.join(src, 'styles.css'), path.join(dir, 'styles.css'));
+  fs.copyFileSync(path.join(src, 'worksheet.css'), path.join(dir, 'worksheet.css'));
+  fs.copyFileSync(path.join(src, 'ws-print.js'), path.join(dir, 'ws-print.js'));
+  const dl = mode === 'student'
+    ? [['Download PDF', 'walking-worksheet-student.pdf'], ['Download Word file', 'walking-worksheet-student.docx']]
+    : [['Download teacher PDF', 'walking-worksheet-teacher.pdf'], ['Student PDF', '../walking-worksheet-student.pdf'], ['Student Word file', '../walking-worksheet-student.docx']];
+  fs.writeFileSync(path.join(dir, 'worksheet.html'), WS.render(WS.model(T, mode), { downloads: dl }));
   fs.mkdirSync(path.join(dir, 'images'), { recursive: true });
   for (const f of fs.readdirSync(path.join(root, 'images'))) fs.copyFileSync(path.join(root, 'images', f), path.join(dir, 'images', f));
 }
-out(root, 'student');
-out(path.join(root, 'teacher'), 'teacher');
-console.log('built student (/) and teacher (/teacher/)');
+if (require.main === module) {
+  out(root, 'student');
+  out(path.join(root, 'teacher'), 'teacher');
+  console.log('built student (/) and teacher (/teacher/)');
+}
+module.exports = { dataFor };
