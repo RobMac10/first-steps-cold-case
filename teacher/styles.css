@@ -123,7 +123,7 @@ a{color:var(--red)}
  #print p{margin:0 0 4px}
  @page{margin:14mm}
 }
-/* First Steps additions */
+/* Walking on Ancient Ground additions */
 .b-book{color:var(--ink);border-color:var(--ink);background:#e9e2cf}
 .panel.book{border-left:6px solid var(--ink)}
 .cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}

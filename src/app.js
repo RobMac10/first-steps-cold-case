@@ -29,7 +29,7 @@ const screens={};
 /* ---------- HOME ---------- */
 screens.home=()=>{
  const nW=[1,2,3,4].filter(unlocked).length,nT=T.topics.filter(t=>topicDone(t.id)).length,nI=T.items.filter(i=>st.items[i.id]&&st.items[i.id].rel).length;
- return '<h1>Case file</h1><p class="lead">A companion to <em>First Steps on Ancient Ground</em> by Robin McKean. Read the book. Use this app to look at the evidence.</p>'+
+ return '<h1>Case file</h1><p class="lead">A companion to <em>Walking on Ancient Ground</em> by Robin McKean. Read the book. Use this app to look at the evidence.</p>'+
  '<div class="cta"><a class="btn dark" href="'+esc(T.flipbook)+'" target="_blank" rel="noopener noreferrer">Open the book (opens in a new tab)</a></div>'+
  typed(T.caseFile)+
  '<h2>The case</h2>'+P(T.summary)+
@@ -220,7 +220,7 @@ screens.spot=(arg)=>{
 
 /* ---------- ABOUT ---------- */
 screens.about=()=>
- '<h1>About</h1><p class="lead">'+esc(T.about)+' <a href="'+esc(T.flipbook)+'" target="_blank" rel="noopener noreferrer">First Steps on Ancient Ground (opens in a new tab)</a>.</p>'+
+ '<h1>About</h1><p class="lead">'+esc(T.about)+' <a href="'+esc(T.flipbook)+'" target="_blank" rel="noopener noreferrer">Walking on Ancient Ground (opens in a new tab)</a>.</p>'+
  '<section class="care" aria-labelledby="c1"><h2 id="c1">Cultural care</h2>'+P(T.care)+'<p>'+esc(T.content)+'</p></section>'+
  '<h2>Acknowledgement</h2>'+P(T.ack)+
  '<h2>'+/*T*/'In the book, in the record, from the story'+/*/T*//*S*/'In the book and in the record'+/*/S*/'</h2><p>The book is historical fiction. Its front pages say some dialogue and personal thoughts “have been imagined”. '+/*T*/'This app keeps three things apart: what the book says, what public records say, and what was written for the story. Where this app could not find a record for something in the story, it says so. It does not say the thing did not happen.'+/*/T*//*S*/'This app keeps two things apart: what the book says and what public records say.'+/*/S*/'</p>'+
@@ -233,7 +233,7 @@ screens.about=()=>
 function buildPrint(){
  const g=v=>esc(v||'—').replace(/\n/g,'<br>');
  const f=st.finding;
- let h='<h1>CASE FILE: FINDING</h1><p>Case 1788–01 / RESISTOR · Companion to First Steps on Ancient Ground · Investigator: me</p>';
+ let h='<h1>CASE FILE: FINDING</h1><p>Case 1788–01 / RESISTOR · Companion to Walking on Ancient Ground · Investigator: me</p>';
  h+='<h4>My first idea (Items A to E only)</h4><p>'+g(st.hyp)+'</p>';
  h+='<h4>Case status</h4><p>'+g(f.status)+'</p><h4>Who I think the Resistor is, and what happened</h4><p>'+g(f.what)+'</p><h4>How my thinking changed</h4><p>'+g(f.revised)+'</p><h4>The sources I trust most, and why</h4><p>'+g(f.trust)+'</p><h4>Whose voices are missing</h4><p>'+g(f.silences)+'</p><h4>What is still missing</h4><p>'+g(f.unchecked)+'</p><h4>How sure am I?</h4><p>'+g(f.sure)+'</p>';
  h+='<h4>My evidence log</h4>'+T.items.map(i=>{const s=st.items[i.id]||{clues:{}};const got=i.clues.filter(c=>s.clues[c[0]]).map(c=>esc(c[2]));return '<p><strong>'+esc(i.title)+'</strong><br>Score: '+g(s.rel)+' of 5<br>Why: '+g(s.why)+'<br>Clues collected: '+(got.length?got.join('; '):'—')+'</p>'}).join('');
@@ -253,7 +253,7 @@ function draw(){
  const name=screens[parts[0]]?parts[0]:'home';
  main.innerHTML=screens[name](parts[1],parts[2]);
  nav.innerHTML=NAV.map(([id,l])=>'<a href="#/'+(id=='home'?'':id)+'"'+(id==name?' aria-current="page"':'')+'>'+l+'</a>').join('');
- document.title=TITLES[name]+' · Cold Case · First Steps on Ancient Ground';
+ document.title=TITLES[name]+' · Cold Case · Walking on Ancient Ground';
  return name;
 }
 function route(){
